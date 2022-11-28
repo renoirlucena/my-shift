@@ -1,2 +1,8 @@
 <h1>Requests#show</h1>
 <p>Find me in app/views/requests/show.html.erb</p>
+
+<% if policy(@request).edit? %>
+  <%= link_to "Edit this request", edit_request_path(@request) %> |
+<% end %>
+<!-- [...] -->
+<%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
