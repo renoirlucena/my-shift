@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top" data-controller="navbar" data-action="scroll@window->navbar#updateNavbar">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
 
   <div class="container-fluid justify-content-end">
 
@@ -28,10 +28,7 @@
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Home", root_path, class: "dropdown-item" %>
-              <%= link_to "List your car", root_path, class: "dropdown-item" %>
-              <%= link_to "My sales", root_path, class: "dropdown-item" %>
-              <%= link_to "My purchases", root_path, class: "dropdown-item" %>
-              <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+              <%= link_to "My profile", edit_user_registration_path, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
