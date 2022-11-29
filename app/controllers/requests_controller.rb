@@ -40,7 +40,7 @@ class RequestsController < ApplicationController
     authorize @request
     # current_user
     if @request.save
-      redirect_to requests_path(@request)
+      redirect_to requests_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -56,7 +56,7 @@ class RequestsController < ApplicationController
     authorize @request
   end
 
-  def request_params # ATUALIZAR AS PERMISSOES
-    params.require(:request).permit(:brand, :model, :year, :km, :color, :type, :price, :location, :avaiable, :description, :user_id, photos: [])
+  def request_params
+    params.require(:request).permit(:request_type, :start_time, :end_time, :origin, :destination, :available, :user_id)
   end
 end
