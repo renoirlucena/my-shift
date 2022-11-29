@@ -2,13 +2,16 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
+    start_date = params.fetch(:start_date, Date.today).to_date
     @requests = policy_scope(Request)
     if params[:query].present?
       @requests = Request.where(start_time: params[:query][:start_time]..params[:query][:end_time])
       raise
     else
       @requests = Request.all
+      @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
+
   end
 
   def search
@@ -44,7 +47,7 @@ class RequestsController < ApplicationController
     authorize @request
     # current_user
     if @request.save
-      redirect_to requests_path(@request)
+      redirect_to requests_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -60,7 +63,7 @@ class RequestsController < ApplicationController
     authorize @request
   end
 
-  def request_params # ATUALIZAR AS PERMISSOES
-    params.require(:request).permit(:brand, :model, :year, :km, :color, :type, :price, :location, :avaiable, :description, :user_id, photos: [])
+  def request_params
+    params.require(:request).permit(:request_type, :start_time, :end_time, :origin, :destination, :available, :user_id)
   end
 end
