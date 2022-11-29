@@ -1,4 +1,9 @@
-<h1>Requests#index</h1>
-<p>Find me in app/views/requests/index.html.erb</p>
+<h1>Requests</h1>
+
+<%= simple_form_for :query, url: requests_path, method: :get, class: "d-flex" do |f| %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.submit "Search" %>
+<% end %>
 
 <%= link_to "New request", new_request_path if policy(Request).new? %>

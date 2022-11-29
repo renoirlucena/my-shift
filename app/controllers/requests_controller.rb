@@ -4,10 +4,17 @@ class RequestsController < ApplicationController
   def index
     @requests = policy_scope(Request)
     if params[:query].present?
-      @requests = Request.search(params[:query])
+      @requests = Request.where(start_time: params[:query][:start_time]..params[:query][:end_time])
+      raise
     else
       @requests = Request.all
     end
+  end
+
+  def search
+    start_time = params[:start_time] || DateTime.now
+    end_time = params[:end_time] || DateTime.now
+    @requests = Request.search(start_time, end_time)
   end
 
   def show
