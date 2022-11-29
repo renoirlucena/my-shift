@@ -5,13 +5,14 @@ class RequestsController < ApplicationController
     start_date = params.fetch(:start_date, Date.today).to_date
     @requests = policy_scope(Request)
     if params[:query].present?
-      @requests = Request.where(start_time: params[:query][:start_time]..params[:query][:end_time])
-      raise
+      @requests = Request.where(
+        start_time: params[:query][:start_time]..params[:query][:end_time],
+        end_time: params[:query][:start_time]..params[:query][:end_time]
+      )
     else
       @requests = Request.all
       @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
-
   end
 
   def search
