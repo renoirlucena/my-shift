@@ -1,4 +1,40 @@
+<div>
 <h1>Requests#index</h1>
-<p>Find me in app/views/requests/index.html.erb</p>
+</div>
+<%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
+  <%= date %>
+  <% requests.each do |request| %>
+    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
+      <p><%= request.origin %></p>
+    </div>
+  <% end %>
+<% end %>
+<div class="container">
+  <div class="request_card">
+    <div>
+      <% @requests.each do |request| %>
+        <p> Período: <%= request.start_time %> a <%= request.end_time %> </p>
+        <p> <%= request.request_type %> </p>
+        <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+        <p> Pedido criado em <%= request.created_at %> </p>
+        <p> <%= request.available %> </p>
+        <div class="btn btn-primary">
+          <%= link_to "New request", new_request_path, :class => "btn" if policy(Request).new? %>
+        </div>
+      <% end %>
+    </div>
 
-<%= link_to "New request", new_request_path if policy(Request).new? %>
+    <label class="btn avatar-photo">
+      <% if current_user.avatar.attached? %>
+        <%= cl_image_tag current_user.avatar.key %>
+      <% else %>
+        <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
+      <% end %>
+    </label>
+    <div>
+      <% @requests.each do |request| %>
+      <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
+      <% end %>
+    </div>
+  </div>
+</div>
