@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :requests
   has_many :exchanges
 
+  has_one_attached :avatar
+
   validates :first_name, presence: true
   validates :first_name, length: { minimum: 3 }
   validates :first_name, format: { with: /[a-zA-Z\u00C0-\u00FF ]/i }
