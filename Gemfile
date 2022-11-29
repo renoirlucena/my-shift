@@ -83,3 +83,4 @@ gem "pundit"
 
 gem 'devise'
 gem 'file_validators'
+gem "simple_calendar", "~> 2.4"
