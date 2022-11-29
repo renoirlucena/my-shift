@@ -2,12 +2,15 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
+    start_date = params.fetch(:start_date, Date.today).to_date
     @requests = policy_scope(Request)
     if params[:query].present?
       @requests = Request.search(params[:query])
     else
       @requests = Request.all
+      @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
+
   end
 
   def show
