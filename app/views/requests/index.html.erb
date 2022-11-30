@@ -59,12 +59,12 @@
           <p> Pedido criado em <%= request.created_at %> </p>
           <p> <%= request.available %> </p>
           <div class="btn btn-primary">
-            <%= link_to "New request", new_request_path, :class => "btn" if policy(Request).new? %>
+            <%= link_to "Pegar request", request_path(request), :class => "btn" if policy(Request).new? %>
           </div>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
             Launch demo modal
-          </button> 
+          </button>
         <% end %>
       </div>
 
@@ -92,7 +92,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" data-open-calendar-target='modalBody'>
-          
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -103,4 +103,3 @@
   </div>
 
 </div>
-
