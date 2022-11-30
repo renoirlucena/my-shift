@@ -5,12 +5,20 @@ class RequestsController < ApplicationController
     start_date = params.fetch(:start_date, Date.today).to_date
     @requests = policy_scope(Request)
     if params[:query].present?
-      @requests = Request.search(params[:query])
+      @requests = Request.where(
+        start_time: params[:query][:start_time]..params[:query][:end_time],
+        end_time: params[:query][:start_time]..params[:query][:end_time]
+      )
     else
       @requests = Request.all
       @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
+  end
 
+  def search
+    start_time = params[:start_time] || DateTime.now
+    end_time = params[:end_time] || DateTime.now
+    @requests = Request.search(start_time, end_time)
   end
 
   def show
@@ -23,7 +31,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update!(request_params)
-      redirect_to @request, notice: "Your request was successfully updated"
+      redirect_to @request, notice: "Sua solicitação foi alterada com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -31,7 +39,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to requests_path, notice: "Request was successfully destroyed."
+    redirect_to requests_path, notice: "Sua solicitação foi excluída."
   end
 
   def create
