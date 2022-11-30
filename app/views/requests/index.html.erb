@@ -9,14 +9,7 @@
   <%= submit_tag "Pesquisar" %>
 <% end %>
 
-<%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
-  <%= date %>
-  <% requests.each do |request| %>
-    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
-      <p><%= request.origin %></p>
-    </div>
-  <% end %>
-<% end %>
+
 <div class="container">
   <div class="request_card">
     <div>
