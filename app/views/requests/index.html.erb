@@ -1,5 +1,13 @@
+<h1>Requests</h1>
+
+<%= simple_form_for :query, url: requests_path, method: :get, class: "d-flex" do |f| %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.submit "Search" %>
+<% end %>
+
 <div>
-<h1>Requests#index</h1>
+<h1></h1>
 </div>
 <%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
   <%= date %>
