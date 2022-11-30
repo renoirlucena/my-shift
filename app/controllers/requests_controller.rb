@@ -2,16 +2,23 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy calendar]
 
   def index
-    start_date = params.fetch(:start_date, Date.today).to_date
+
     @requests = policy_scope(Request)
-    if params[:query].present?
-      @requests = Request.where(
-        start_time: params[:query][:start_time]..params[:query][:end_time],
-        end_time: params[:query][:start_time]..params[:query][:end_time]
-      )
-    else
-      @requests = Request.all
-      @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+
+    if params[:start_time].present? ||
+       params[:end_time].present? ||
+       params[:origin].present? ||
+       params[:destination].present?
+
+      start_time = Date.new(1980,1,1) if params[:start_time].blank?
+      end_time = Date.new(2040,1,1) if params[:end_time].blank?
+
+      query = "(start_time >= :start_time AND end_time <= :end_time) AND (origin ILIKE :origin OR destination ILIKE :destination)"
+
+      @requests = @requests.where(query, start_time: start_time,
+                                         end_time: end_time,
+                                         origin: params[:origin],
+                                         destination: params[:destination])
     end
     respond_to do |format|
       format.html # Follow regular flow of Rails
@@ -23,7 +30,9 @@ class RequestsController < ApplicationController
   def search
     start_time = params[:start_time] || DateTime.now
     end_time = params[:end_time] || DateTime.now
-    @requests = Request.search(start_time, end_time)
+    origin = params[:origin]
+    destination = params[:destination]
+    @requests = Request.search(start_time, end_time, origin, destination)
   end
 
   def show

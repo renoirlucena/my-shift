@@ -689,6 +689,11 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+shortcut-buttons-flatpickr@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/shortcut-buttons-flatpickr/-/shortcut-buttons-flatpickr-0.4.0.tgz#a36e0a88a670ed2637b7b1adb5bee0914c29a7e7"
+  integrity sha512-JKmT4my3Hm1e18OvG4Q6RcFhN4WRqqpTMkHrvZ7fup/dp6aTIWGVCHdRYtASkp/FCzDlJh6iCLQ/VcwwNpAMoQ==
+
 source-map-support@~0.5.20:
   version "0.5.21"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
@@ -739,6 +744,11 @@ terser@^5.14.1:
     acorn "^8.5.0"
     commander "^2.20.0"
     source-map-support "~0.5.20"
+
+typed.js@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/typed.js/-/typed.js-2.0.12.tgz#246aff074c8e18d32ec27acb7be15094ac0bc0e1"
+  integrity sha512-lyACZh1cu+vpfYY3DG/bvsGLXXbdoDDpWxmqta10IQUdMXisMXOEyl+jos+YT9uBbzK4QaKYBjT3R0kTJO0Slw==
 
 update-browserslist-db@^1.0.9:
   version "1.0.10"
