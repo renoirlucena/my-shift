@@ -12,3 +12,6 @@ application.register("flatpickr-search", FlatpickrSearchController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)
