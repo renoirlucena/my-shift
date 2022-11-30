@@ -1,5 +1,5 @@
 <div class="container">
-
+<%# nao mexer nesse form, ele e do new request %>
   <%= simple_form_for(request) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
