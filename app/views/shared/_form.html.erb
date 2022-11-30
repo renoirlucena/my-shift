@@ -1,14 +1,14 @@
 <div class="container">
 
-  <%= simple_form_for(request) do |f| %>
+  <%= simple_form_for(request, data: { controller: 'flatpickr' }) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="d-flex justify-content-around mt-5 mb-5" id="form-bg">
       <div>
           <%= f.input :request_type, as: :select, class: "chosen-select", collection: ["Folga", "Troca", "Extra"], prompt: 'Selecione', label: 'Tipo de requisição' %>
-          <%= f.input :start_time, placeholder: 'start_time', label: 'Ida' %>
-          <%= f.input :end_time, placeholder: 'end_time', label: 'Volta' %>
+          <%= f.input :start_time, placeholder: 'start_time', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } } %>
+          <%= f.input :end_time, placeholder: 'end_time', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" }, disable: true } %>
           <%= f.input :origin, placeholder: 'São Paulo', label: 'Origem' %>
           <%= f.input :destination, placeholder: 'Rio de Janeiro', label: 'Destino' %>
           <%= f.input :available, placeholder: 'available' %>
