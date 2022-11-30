@@ -30,6 +30,10 @@ class RequestPolicy < ApplicationPolicy
     owner?
   end
 
+  def calendar?
+    true
+  end
+
   private
 
   def owner?

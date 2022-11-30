@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[show edit update destroy]
+  before_action :set_request, only: %i[show edit update destroy calendar]
 
   def index
 
@@ -20,6 +20,11 @@ class RequestsController < ApplicationController
                                          origin: params[:origin],
                                          destination: params[:destination])
     end
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "mycalendar", locals: {request: @request}, formats: [:html] }
+    end
+
   end
 
   def search
@@ -64,6 +69,13 @@ class RequestsController < ApplicationController
   end
 
   def edit
+  end
+
+  def calendar
+
+    respond_to do |format|
+      format.text {  render partial: 'requests/mycalendar', locals: { requests: [@request] }, formats: [:html] }
+    end
   end
 
   private
