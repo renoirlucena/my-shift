@@ -1,0 +1,35 @@
+#ida {
+  display:flex;
+  margin: 1em;
+  box-shadow: 2px 2px 2px $ice;
+  border-color: $ice;
+}
+
+#volta {
+  display:flex;
+  padding: 1em;
+}
+
+#origem {
+  display:flex;
+  padding: 1em;
+}
+
+#destino {
+  display:flex;
+  padding: 1em;
+}
+
+#pesquisar {
+  display:flex;
+  padding: 1em;
+}
+
+#form-bg {
+  background-color: $dark-blue;
+}
+
+// #title-filter {
+//   display: inline-block;
+//   align-items: center;
+// }
