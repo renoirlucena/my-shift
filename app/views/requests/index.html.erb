@@ -1,7 +1,7 @@
-<h1>Requests</h1>
+<div data-controller="open-calendar">
+  <h1>Requests</h1>
 
-<div class="d-flex justify-content-around pt-5 pb-5" id="form-bg">
-  <h3 id="title-filter">Filtrar:</h3>
+<div id="form-bg">
   <%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
     <div id="ida">
       <%= text_field_tag :start_time, params[:start_time], data: { 'flatpickr-search-target': "startTime" }, placeholder: "Ida" %>
@@ -12,11 +12,11 @@
     <div id="origem">
       <%= text_field_tag :origin, params[:origin], placeholder: "Origem" %>
     </div>
-    <div id="volta">
+    <div id="destino">
       <%= text_field_tag :destination, params[:destination], placeholder: "Destino" %>
     </div>
     <div id="pesquisar">
-      <%= submit_tag "Pesquisar" %>
+      <%= submit_tag "Pesquisar", class: "btn-pesquisar" %>
     </div>
   <% end %>
 </div>
@@ -45,17 +45,57 @@
       <% end %>
     </div>
 
-    <label class="btn avatar-photo">
-      <% if current_user.avatar.attached? %>
-        <%= cl_image_tag current_user.avatar.key %>
-      <% else %>
-        <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
-      <% end %>
-    </label>
-    <div>
-      <% @requests.each do |request| %>
-      <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
-      <% end %>
+  <div class="container">
+    <div class="request_card">
+      <div>
+        <% @requests.each do |request| %>
+          <p> Período: <%= l request.start_time, format: :short %> a <%= l request.end_time, format: :short %> </p>
+          <p> <%= request.request_type %> </p>
+          <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+          <p> Pedido criado em <%= request.created_at %> </p>
+          <p> <%= request.available %> </p>
+          <div class="btn btn-primary">
+            <%= link_to "New request", new_request_path, :class => "btn" if policy(Request).new? %>
+          </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
+            Launch demo modal
+          </button>
+        <% end %>
+      </div>
+
+      <label class="btn avatar-photo">
+        <% if current_user.avatar.attached? %>
+          <%= cl_image_tag current_user.avatar.key %>
+        <% else %>
+          <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
+        <% end %>
+      </label>
+      <div>
+        <% @requests.each do |request| %>
+        <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
+        <% end %>
+      </div>
     </div>
   </div>
+
+<!-- Modal -->
+  <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" data-open-calendar-target='modalBody'>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

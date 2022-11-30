@@ -1,23 +1,11 @@
-#ida {
+#ida, #volta, #origem, #destino {
   display:flex;
   margin: 1em;
-  box-shadow: 2px 2px 2px $light-blue;
-  border-color: $ice;
-}
+  border-radius: 5px;
 
-#volta {
-  display:flex;
-  padding: 1em;
-}
-
-#origem {
-  display:flex;
-  padding: 1em;
-}
-
-#destino {
-  display:flex;
-  padding: 1em;
+  ::placeholder {
+    color: rgb(185, 185, 185);
+  }
 }
 
 #pesquisar {
@@ -25,12 +13,24 @@
   padding: 1em;
 }
 
-#form-bg {
+.btn-pesquisar {
   background-color: $dark-blue;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 5px;
 }
 
-#title-filter {
-  text-align: center;
-  display: inline-block;
+#form-bg {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 2em 0;
+  color: #fff;
+  background-color: $ice;
 }
+
+// #title-filter {
+//   text-align: center;
+//   display: inline-block;
+//   align-items: center;
+// }
