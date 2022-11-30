@@ -2,6 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
+import confirmDatePlugin from "flatpickr/dist/plugins/rangePlugin";
 
 // Connects to data-controller="flatpickr"
 export default class extends Controller {
@@ -11,13 +12,16 @@ export default class extends Controller {
   connect() {
     flatpickr(this.startTimeTarget, {
               enableTime: true,
-              dateFormat: "j M Y",
+              dateFormat: "j-M-Y",
               mode: "range",
               minDate: "today",
               altInput: true,
-              altFormat: "j\\ de M Y",
+              altFormat: "j \\de M, Y H:i",
+              time_24hr: true,
               // Provide an id for the plugin to work
-              plugins: [new rangePlugin({ input: "#request_end_time"})]})
+              plugins: [new rangePlugin({ input: "#request_end_time"})]
+              // plugins: [new confirmDatePlugin({})]
+            })
     flatpickr(this.endTimeTarget, {})
   }
 }
