@@ -1,14 +1,13 @@
 <h1>Requests</h1>
 
-<%= simple_form_for :query, url: requests_path, method: :get, class: "d-flex" do |f| %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.submit "Search" %>
+<%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
+  <%= text_field_tag :start_time, params[:start_time], data: { 'flatpickr-search-target': "startTime" } %>
+  <%= text_field_tag :end_time, params[:end_time], data: { 'flatpickr-search-target': "endTime" } %>
+  <%= text_field_tag :origin, params[:origin] %>
+  <%= text_field_tag :destination, params[:destination] %>
+  <%= submit_tag "Pesquisar" %>
 <% end %>
 
-<div>
-<h1></h1>
-</div>
 <%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
   <%= date %>
   <% requests.each do |request| %>
