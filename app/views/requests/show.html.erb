@@ -1,8 +1,15 @@
-<h1>Requests#show</h1>
-<p>Find me in app/views/requests/show.html.erb</p>
+<div class="container mt-5">
+  <h1>Request</h1>
 
-<% if policy(@request).edit? %>
-  <%= link_to "Edit this request", edit_request_path(@request) %> |
-<% end %>
-<!-- [...] -->
-<%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
+  <p>Nome: <%= @request.user.first_name %></p>
+  <p>Sobrenome: <%= @request.user.last_name %></p>
+  <p>Tipo de requisicao: <%= @request.request_type %></p>
+  <p>Origem: <%= @request.origin %></p>
+  <p>Destino: <%= @request.destination %></p>
+
+  <% if policy(@request).edit? %>
+    <%= link_to "Edit this request", edit_request_path(@request) %> |
+  <% end %>
+  <!-- [...] -->
+  <%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
+</div>

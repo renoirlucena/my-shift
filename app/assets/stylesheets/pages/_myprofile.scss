@@ -1,0 +1,35 @@
+.container-my-profile {
+  padding-top: 50px;
+  justify-content: center;
+}
+
+.avatar-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .avatar-edit {
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 7px;
+  }
+
+  .avatar-edit:hover {
+    background-color: #041562;
+    color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  img:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+}

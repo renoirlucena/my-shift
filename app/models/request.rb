@@ -1,4 +1,6 @@
 class Request < ApplicationRecord
+  # include PgSearch::Model
+
   belongs_to :user
   has_many :exchanges
 

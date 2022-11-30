@@ -2,12 +2,32 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
 
   def index
+
     @requests = policy_scope(Request)
-    if params[:query].present?
-      @requests = Request.search(params[:query])
-    else
-      @requests = Request.all
+
+    if params[:start_time].present? ||
+       params[:end_time].present? ||
+       params[:origin].present? ||
+       params[:destination].present?
+
+      start_time = Date.new(1980,1,1) if params[:start_time].blank?
+      end_time = Date.new(2040,1,1) if params[:end_time].blank?
+
+      query = "(start_time >= :start_time AND end_time <= :end_time) AND (origin ILIKE :origin OR destination ILIKE :destination)"
+
+      @requests = @requests.where(query, start_time: start_time,
+                                         end_time: end_time,
+                                         origin: params[:origin],
+                                         destination: params[:destination])
     end
+  end
+
+  def search
+    start_time = params[:start_time] || DateTime.now
+    end_time = params[:end_time] || DateTime.now
+    origin = params[:origin]
+    destination = params[:destination]
+    @requests = Request.search(start_time, end_time, origin, destination)
   end
 
   def show
@@ -20,7 +40,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update!(request_params)
-      redirect_to @request, notice: "Your request was successfully updated"
+      redirect_to @request, notice: "Sua solicitação foi alterada com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -28,7 +48,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to requests_path, notice: "Request was successfully destroyed."
+    redirect_to requests_path, notice: "Sua solicitação foi excluída."
   end
 
   def create
@@ -37,7 +57,7 @@ class RequestsController < ApplicationController
     authorize @request
     # current_user
     if @request.save
-      redirect_to requests_path(@request)
+      redirect_to requests_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,7 +73,7 @@ class RequestsController < ApplicationController
     authorize @request
   end
 
-  def request_params # ATUALIZAR AS PERMISSOES
-    params.require(:request).permit(:brand, :model, :year, :km, :color, :type, :price, :location, :avaiable, :description, :user_id, photos: [])
+  def request_params
+    params.require(:request).permit(:request_type, :start_time, :end_time, :origin, :destination, :available, :user_id)
   end
 end
