@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: %i[show edit update destroy]
+  before_action :set_request, only: %i[show edit update destroy calendar]
 
   def index
     start_date = params.fetch(:start_date, Date.today).to_date
@@ -13,6 +13,11 @@ class RequestsController < ApplicationController
       @requests = Request.all
       @requests = @requests.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
     end
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "mycalendar", locals: {request: @request}, formats: [:html] }
+    end
+
   end
 
   def search
@@ -55,6 +60,13 @@ class RequestsController < ApplicationController
   end
 
   def edit
+  end
+
+  def calendar
+
+    respond_to do |format|
+      format.text {  render partial: 'requests/mycalendar', locals: { requests: [@request] }, formats: [:html] }
+    end
   end
 
   private
