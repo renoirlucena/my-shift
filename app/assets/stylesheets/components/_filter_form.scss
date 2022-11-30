@@ -1,7 +1,7 @@
 #ida {
   display:flex;
   margin: 1em;
-  box-shadow: 2px 2px 2px $ice;
+  box-shadow: 2px 2px 2px $light-blue;
   border-color: $ice;
 }
 
@@ -29,7 +29,8 @@
   background-color: $dark-blue;
 }
 
-// #title-filter {
-//   display: inline-block;
-//   align-items: center;
-// }
+#title-filter {
+  text-align: center;
+  display: inline-block;
+  align-items: center;
+}

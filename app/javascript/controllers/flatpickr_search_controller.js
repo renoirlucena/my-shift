@@ -9,9 +9,14 @@ export default class extends Controller {
   static targets = [ "startTime", "endTime" ]
 
   connect() {
-    console.log('oie')
     flatpickr(this.startTimeTarget, {
               enableTime: true,
+              dateFormat: "j-M-Y",
+              mode: "range",
+              minDate: "today",
+              altInput: true,
+              altFormat: "j \\de M, Y H:i",
+              time_24hr: true,
               // Provide an id for the plugin to work
               plugins: [new rangePlugin({ input: "#end_time"})]})
     flatpickr(this.endTimeTarget, {})
