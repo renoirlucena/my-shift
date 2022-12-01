@@ -11,9 +11,8 @@
         <li><a href='#' data-item='Contato'>Contato</a></li>
       </ul>
     </div>
-  <div class="container-fluid justify-content-end">
-    <%= link_to "New request", new_request_path, class: "btn btn-primary", data: { turbo: true, turbo_frame: "modal"} %>
 
+  <div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,11 +22,9 @@
 
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-
-        <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Criar request
-        </button>
-
+          <div class="d-flex align-items-center">
+            <%= link_to "Criar request", new_request_path, class: "btn btn-ghost", data: { turbo: true, turbo_frame: "modal"} %>
+          </div>
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached? %>
                 <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle avatar-navbar", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -48,6 +45,7 @@
           </li>
         <% end %>
       </ul>
+    </div>
     </div>
   </div>
 </div>
