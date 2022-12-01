@@ -21,7 +21,7 @@
             <p> Pedido criado em <%= request.created_at %> </p>
             <p> <%= request.available %> </p>
             <!-- Button trigger modal -->
-            <%= link_to "Pegar request", request_path(request), :class => "btn btn-primary", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+            <%= link_to "Ver requisição", request_path(request), :class => "btn btn-primary", data: { turbo: true, turbo_frame: "modal" } %>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
               Ver calendário
