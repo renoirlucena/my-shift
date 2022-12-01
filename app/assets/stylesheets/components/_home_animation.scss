@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 90vh;
 }
 
 .home-container {
@@ -13,9 +14,21 @@
 
 .home-cards {
   background-image: url("world-map-pins.jpg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
+}
+#sobre {
+  background-color: $ice;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+iframe {
+  border-radius: 15px;
+  width: 800px;
+  height: 480px;
 }
 
 // cards
@@ -153,6 +166,52 @@
   color: $red;
 }
 
+.card-sobre {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-sobre img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+  background-color: $light-blue;
+}
+
+.card-sobre h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-sobre p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-sobre .card-sobre-infos {
+  padding: 16px;
+}
+
+.div-sobre {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+  background-color: $ice;
+  align-items: center;
+  justify-content: center;
+}
+
+.coluna-50 {
+  width: 40%;
+}
 
 
 // home animation

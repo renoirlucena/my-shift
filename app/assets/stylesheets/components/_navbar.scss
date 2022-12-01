@@ -6,6 +6,10 @@
   margin-top: 0;
 }
 
+.logo-nav {
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);;
+}
 .navbar-lewagon {
   justify-content: space-between;
   background: $light-blue;
