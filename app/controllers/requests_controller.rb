@@ -4,6 +4,8 @@ class RequestsController < ApplicationController
   def index
     @requests = policy_scope(Request)
 
+    @requests = Request.order(created_at: :desc)
+
     if params[:start_time].present? ||
        params[:end_time].present? ||
        params[:origin].present? ||
