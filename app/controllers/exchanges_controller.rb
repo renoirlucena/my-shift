@@ -2,7 +2,7 @@ class ExchangesController < ApplicationController
   before_action :set_exchange, only: %i[show edit update destroy]
 
   def index
-    @exchanges = policy_scope(exchange)
+    @exchanges = policy_scope(Exchange)
     if params[:query].present?
       @exchanges = Exchange.search(params[:query])
     else
@@ -11,9 +11,13 @@ class ExchangesController < ApplicationController
   end
 
   def show
+    @exchange = Exchange.find(params[:id])
+    @request = @exchange.request
+    authorize @exchange
   end
 
   def new
+    @request = Request.find(params[:request_id])
     @exchange = Exchange.new
     authorize @exchange
   end
@@ -32,12 +36,13 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    @exchange = Exchange.create(exchange_params)
-    @exchange.user = current_user
+    @request = Request.find(params[:request_id])
+    @exchange = Exchange.new(request: @request, user: current_user)
     authorize @exchange
+
     # current_user
     if @exchange.save
-      redirect_to exchanges_path(@exchange)
+      redirect_to requests_path
     else
       render :new, status: :unprocessable_entity
     end
