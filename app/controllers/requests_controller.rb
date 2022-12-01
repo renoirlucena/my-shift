@@ -36,6 +36,10 @@ class RequestsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html {}
+      format.text {  render partial: 'requests/pick', locals: { request: @request }, formats: [:html] }
+    end
   end
 
   def new

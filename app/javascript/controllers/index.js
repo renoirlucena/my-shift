@@ -13,8 +13,11 @@ application.register("flatpickr-search", FlatpickrSearchController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import TypedJsController from "./typed_js_controller"
-application.register("typed-js", TypedJsController)
+import ModalTurboController from "./modal_turbo_controller"
+application.register("modal-turbo", ModalTurboController)
 
 import OpenCalendarController from "./open_calendar_controller"
 application.register("open-calendar", OpenCalendarController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)

@@ -12,13 +12,13 @@
   </head>
 
   <body>
-  <%= render "shared/navbar" unless action_name == "home" %>
-  <%= render "shared/home-navbar" if action_name == "home" %>
-  <%= render "shared/flashes" %>
+    <%= turbo_frame_tag "modal" %>
+    <%= render "shared/navbar" unless action_name == "home" %>
+    <%= render "shared/home-navbar" if action_name == "home" %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
-    <%= render "shared/modal" %>
-    <%= render "requests/modal" %>
-  </body>
+
   <footer><%= render "shared/footer" %></footer>
+  </body>
 </html>
