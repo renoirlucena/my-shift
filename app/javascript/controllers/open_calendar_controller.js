@@ -22,4 +22,17 @@ export default class extends Controller {
         this.modal.show()
       })
   }
+
+  pick({params}) {
+    const url = `/requests/${params.id}`
+
+    fetch(url, {headers: {"Accept": "text/plain"}})
+      .then(response => response.text())
+      .then((data) => {
+        this.modalBodyTarget.innerHTML = data
+        this.modal.show()
+      })
+  }
+
+
 }
