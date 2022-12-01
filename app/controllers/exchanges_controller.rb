@@ -38,6 +38,7 @@ class ExchangesController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
     @exchange = Exchange.new(request: @request, user: current_user)
+    @exchange.request = @request
     authorize @exchange
 
     # current_user
