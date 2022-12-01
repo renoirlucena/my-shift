@@ -10,12 +10,12 @@
 
     <div class="d-flex gap-3">
       <% if policy(@request).edit? %>
-        <%= link_to "Edit this request", edit_request_path(@request), class: "btn btn-primary" %>
-        <%= button_to "Destroy this request", @request, class: "btn btn-danger", method: :delete if policy(@request).destroy?%>
+        <%= link_to "Editar minha requisição", edit_request_path(@request), class: "btn btn-primary" if policy(@request).edit?%>
+        <%= button_to "Destruir minha requisição", @request, class: "btn btn-danger", method: :delete if policy(@request).destroy?%>
       <% end %>
     </div>
     <div>
-      <%= link_to "Quero request", new_request_exchange_path(@request), class: "btn btn-primary" %>
+      <%= link_to "Quero essa escala", new_request_exchange_path(@request), class: "btn btn-primary"%>
     </div>
   </div>
 <% end %>
