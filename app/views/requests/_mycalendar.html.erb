@@ -1,12 +1,16 @@
 
 <%= month_calendar(events: requests, end_attribute: :end_time) do |date, reqs| %>
-  <%= date %>
+  <%= date.day %>
   <% reqs.each do |request| %>
     <div class="meeting">
-      <p><%= request.origin %></p>
-      <p><%= request.destination %></p>
-      <p><%= request.start_time %></p>
-      <p><%= request.end_time %></p>
+      <% if date == request.start_time.to_date  %>
+        <%= request.origin %>
+        <%= request.start_time.strftime("%H:%M") %>
+      <% end %>
+      <% if date == request.end_time.to_date  %>
+        <%= request.destination %>
+        <%= request.end_time.strftime("%H:%M") %>
+      <% end  %>
     </div>
   <% end %>
 <% end %>
