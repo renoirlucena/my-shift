@@ -9,6 +9,19 @@
   background: linear-gradient(to left, $dark-blue, $light-blue, $blue);
   }
 
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+.links-devise {
+  text-decoration: none;
+  color: $light-blue;
+}
+
   @media (min-width: 768px) {
   .gradient-form {
   height: 100vh !important;
