@@ -20,10 +20,9 @@
             <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
             <p> Pedido criado em <%= request.created_at %> </p>
             <p> <%= request.available %> </p>
-            <div class="btn btn-primary">
-              <%= link_to "Pegar request", request_path(request), :class => "btn", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
-              <!-- Button trigger modal -->
-            </div>
+            <!-- Button trigger modal -->
+            <%= link_to "Pegar request", request_path(request), :class => "btn btn-primary", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+            <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
               Ver calendário
             </button>
