@@ -1,2 +1,17 @@
-<h1>Exchanges#new</h1>
-<p>Find me in app/views/exchanges/new.html.erb</p>
+<%= render "shared/modal-turbo" do %>
+  <h3 class="modal-title">Contatar dono da request</h3>
+  <%= simple_form_for [@request, @exchange], html: { class: "mt-3", data: { turbo: true } } do |f| %>
+    <%= f.association :request,
+                      label: false,
+                      prompt: 'Request',
+                      wrapper_html: { class: "form-list" } %>
+    <%= f.input :status,
+                as: :text,
+                label: false,
+                placeholder: 'Comment',
+                wrapper_html: {class: "form-list"} %>
+    <div class="text-center">
+      <%= f.submit class: "btn-capsule-sm btn-outline-gold mt-2" %>
+    </div>
+  <% end %>
+<% end %>

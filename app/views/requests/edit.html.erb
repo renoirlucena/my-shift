@@ -1,11 +1,18 @@
 <%= render "shared/modal-turbo" do %>
-  <div class="container mt-5">
-    <h1>Edit Request</h1>
-
-    <p>Nome: <%= @request.user.first_name %></p>
-    <p>Sobrenome: <%= @request.user.last_name %></p>
-    <p>Tipo de requisicao: <%= @request.request_type %></p>
-    <p>Origem: <%= @request.origin %></p>
-    <p>Destino: <%= @request.destination %></p>
-  </div>
+  <%= simple_form_for @request, html: { class: "mt-3", data: { turbo: true, turbo_frame: 'modal' } } do |f| %>
+    <%= f.input :request_type,
+                as: :select,
+                collection: ["Folga", "Troca", "Extra"],
+                label: false,
+                autofocus: true %>
+    <%= f.input :origin,
+                as: :text,
+                label: false,
+                autofocus: true %>
+    <%= f.input :destination,
+                as: :text,
+                label: false,
+                autofocus: true %>
+    <%= f.submit class: "btn-capsule-sm btn-outline-gold mt-3" %>
+  <% end %>
 <% end %>
