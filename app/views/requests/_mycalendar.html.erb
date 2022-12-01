@@ -1,10 +1,11 @@
 
 
-<%= week_calendar(events: requests, end_attribute: :end_time) do |date, reqs| %>
+<%= month_calendar(events: requests, end_attribute: :end_time) do |date, reqs| %>
   <%= date %>
   <% reqs.each do |request| %>
     <div class="meeting"> 
       <p><%= request.origin %></p>
+      <p><%= request.destination %></p>
     </div>
   <% end %>
 <% end %>

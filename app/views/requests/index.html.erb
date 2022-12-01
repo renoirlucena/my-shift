@@ -9,14 +9,7 @@
   <%= submit_tag "Pesquisar" %>
 <% end %>
 
-<%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
-  <%= date %>
-  <% requests.each do |request| %>
-    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
-      <p><%= request.origin %></p>
-    </div>
-  <% end %>
-<% end %>
+
 <div class="container">
   <div class="request_card">
     <div>
@@ -39,11 +32,11 @@
           <p> Pedido criado em <%= request.created_at %> </p>
           <p> <%= request.available %> </p>
           <div class="btn btn-primary">
-            <%= link_to "Pegar request", request_path(request), :class => "btn" if policy(Request).new? %>
+            <%= link_to "Pegar request", request_path(request), :class => "btn btn-primary" if policy(Request).new? %>
           </div>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
-            Launch demo modal
+            Ver Calendário
           </button>
         <% end %>
       </div>
@@ -76,7 +69,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <%# <button type="button" class="btn btn-primary">Save changes</button> %>
         </div>
       </div>
     </div>
