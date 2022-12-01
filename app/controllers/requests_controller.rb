@@ -2,16 +2,17 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy calendar]
 
   def index
-
     @requests = policy_scope(Request)
+
+    @requests = Request.order(created_at: :desc)
 
     if params[:start_time].present? ||
        params[:end_time].present? ||
        params[:origin].present? ||
        params[:destination].present?
 
-      start_time = Date.new(1980,1,1) if params[:start_time].blank?
-      end_time = Date.new(2040,1,1) if params[:end_time].blank?
+      start_time = params[:start_time].blank? ? Date.new(1980,1,1) : Time.zone.parse(params[:start_time]).beginning_of_day
+      end_time = params[:end_time].blank? ? Date.new(2040,1,1) : Time.zone.parse(params[:end_time]).end_of_day
 
       query = "(start_time >= :start_time AND end_time <= :end_time) AND (origin ILIKE :origin OR destination ILIKE :destination)"
 
@@ -24,7 +25,6 @@ class RequestsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: "mycalendar", locals: {request: @request}, formats: [:html] }
     end
-
   end
 
   def search
@@ -76,7 +76,6 @@ class RequestsController < ApplicationController
   end
 
   def calendar
-
     respond_to do |format|
       format.text {  render partial: 'requests/mycalendar', locals: { requests: [@request] }, formats: [:html] }
     end

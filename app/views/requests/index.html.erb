@@ -48,20 +48,21 @@
       <% @requests.each do |request| %>
       <div class="request_card">
         <div>
-            <p> Período: <%= l request.start_time, format: :short %> a <%= l request.end_time, format: :short %> </p>
-            <p> <%= request.request_type %> </p>
-            <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
-            <p> Pedido criado em <%= request.created_at %> </p>
+            <h3> <%= request.request_type %> </h3>
+            <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
+            <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+            <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
             <p> <%= request.available %> </p>
-            <!-- Button trigger modal -->
-            <%= link_to "Ver requisição", request_path(request), :class => "btn btn-primary", data: { turbo: true, turbo_frame: "modal" } %>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
+
+              <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+              <!-- Button trigger modal -->
+
+            <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
               Ver calendário
             </button>
         </div>
         <div>
-            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
+            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> <%= request.user.last_name %> </p>
             <label class="btn avatar-photo">
             <% if current_user.avatar.attached? %>
               <%= cl_image_tag current_user.avatar.key %>
