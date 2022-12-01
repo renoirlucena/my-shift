@@ -20,20 +20,26 @@
       </div>
     <% end %>
   </div>
-  
+
 <!-- ACEITAR TUDO ABAIXO -->
   <div class="container">
     <div class="request_card_total">
       <% @requests.each do |request| %>
       <div class="request_card">
         <div>
+            <p><%= request.exchange.present? ? "Ja em negociacao" : "Disponivel" %></p>
             <h3> <%= request.request_type %> </h3>
             <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
             <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
             <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
-            <p> <%= request.available %> </p>
 
-              <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+              <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } if policy(Exchange).new? %>
+              <div class="d-flex gap-3">
+              <% if policy(request).edit? %>
+                <%= link_to "Editar minha requisição", edit_request_path(request), class: "btn btn-primary" if policy(request).edit?%>
+                <%= button_to "Destruir minha requisição", request, class: "btn btn-danger", method: :delete if policy(request).destroy?%>
+              <% end %>
+              </div>
               <!-- Button trigger modal -->
 
             <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>

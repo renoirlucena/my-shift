@@ -1,5 +1,5 @@
 class ExchangePolicy < ApplicationPolicy
-  class Scope < Scope
+ class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       user.admin? ? scope.all : scope.where(user: user)
@@ -34,8 +34,8 @@ class ExchangePolicy < ApplicationPolicy
 
   def owner?
     # verificar se o usuário do restaurate é o usuário logado
-    # record = @exchange
-    # record.user = @exchange.user
+    # record = @request
+    # record.user = @request.user
     # user = current_user
     record.user == user
   end
