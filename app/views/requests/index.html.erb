@@ -1,45 +1,45 @@
 <div data-controller="open-calendar">
   <h1>Requests</h1>
 
-<div id="form-bg">
-  <%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
-    <div id="ida">
-      <%= text_field_tag :start_time, params[:start_time], data: { 'flatpickr-search-target': "startTime" }, placeholder: "Ida" %>
-    </div>
-    <div id="volta">
-      <%= text_field_tag :end_time, params[:end_time], data: { 'flatpickr-search-target': "endTime" }, placeholder: "Volta" %>
-    </div>
-    <div id="origem">
-      <%= text_field_tag :origin, params[:origin], placeholder: "Origem" %>
-    </div>
-    <div id="destino">
-      <%= text_field_tag :destination, params[:destination], placeholder: "Destino" %>
-    </div>
-    <div id="pesquisar">
-      <%= submit_tag "Pesquisar", class: "btn-main" %>
-    </div>
-  <% end %>
-</div>
+  <div id="form-bg">
+    <%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
+      <div id="ida">
+        <%= text_field_tag :start_time, params[:start_time], data: { 'flatpickr-search-target': "startTime" }, placeholder: "Ida" %>
+      </div>
+      <div id="volta">
+        <%= text_field_tag :end_time, params[:end_time], data: { 'flatpickr-search-target': "endTime" }, placeholder: "Volta" %>
+      </div>
+      <div id="origem">
+        <%= text_field_tag :origin, params[:origin], placeholder: "Origem" %>
+      </div>
+      <div id="destino">
+        <%= text_field_tag :destination, params[:destination], placeholder: "Destino" %>
+      </div>
+      <div id="pesquisar">
+        <%= submit_tag "Pesquisar", class: "btn-main" %>
+      </div>
+    <% end %>
+  </div>
 
-<%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
-  <%= date %>
-  <% requests.each do |request| %>
-    <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
-      <p><%= request.origin %></p>
-    </div>
+  <%= week_calendar(events: @requests, end_attribute: :end_time) do |date, requests| %>
+    <%= date %>
+    <% requests.each do |request| %>
+      <div class="meeting">  <-- We will add some style to the meeting class later so let's add it now -->
+        <p><%= request.origin %></p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 
-<div class="container">
-  <div class="request_card">
-    <div>
-      <% @requests.each do |request| %>
-        <p> Período: <%= request.start_time %> a <%= request.end_time %> </p>
-        <p> <%= request.request_type %> </p>
-        <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
-        <p> Pedido criado em <%= request.created_at %> </p>
-        <p> <%= request.available %> </p>
-      <% end %>
+  <div class="container">
+    <div class="request_card">
+      <div>
+        <% @requests.each do |request| %>
+          <p> Período: <%= request.start_time %> a <%= request.end_time %> </p>
+          <p> <%= request.request_type %> </p>
+          <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+          <p> Pedido criado em <%= request.created_at %> </p>
+          <p> <%= request.available %> </p>
+        <% end %>
     </div>
 
 <!-- ACEITAR TUDO ABAIXO -->
@@ -53,10 +53,10 @@
             <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
             <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
             <p> <%= request.available %> </p>
-          
+
               <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
               <!-- Button trigger modal -->
-            
+
             <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
               Ver calendário
             </button>
