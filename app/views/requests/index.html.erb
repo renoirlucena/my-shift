@@ -1,6 +1,7 @@
 <div data-controller="open-calendar">
   <h1>Requests</h1>
 
+<<<<<<< HEAD
 <div id="form-bg">
   <%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
     <div id="ida">
@@ -42,57 +43,54 @@
       <% end %>
     </div>
 
+<!-- ACEITAR TUDO ABAIXO -->
   <div class="container">
-    <div class="request_card">
-      <div>
-        <% @requests.each do |request| %>
-          <p> Período: <%= l request.start_time, format: :short %> a <%= l request.end_time, format: :short %> </p>
-          <p> <%= request.request_type %> </p>
-          <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
-          <p> Pedido criado em <%= request.created_at %> </p>
-          <p> <%= request.available %> </p>
-          <div class="btn btn-primary">
-            <%= link_to "Pegar request", request_path(request), :class => "btn", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+    <div class="request_card_total">
+      <% @requests.each do |request| %>
+      <div class="request_card">
+        <div>
+            <p> Período: <%= l request.start_time, format: :short %> a <%= l request.end_time, format: :short %> </p>
+            <p> <%= request.request_type %> </p>
+            <p> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+            <p> Pedido criado em <%= request.created_at %> </p>
+            <p> <%= request.available %> </p>
+            <!-- Button trigger modal -->
+            <%= link_to "Pegar request", request_path(request), :class => "btn btn-primary", data: { turbo: true, turbo_frame: "modal" } if policy(Request).new? %>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
+              Ver calendário
+            </button>
+        </div>
+        <div>
+            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
+            <label class="btn avatar-photo">
+            <% if current_user.avatar.attached? %>
+              <%= cl_image_tag current_user.avatar.key %>
+            <% else %>
+              <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
+            </label>
+            <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+  <!-- Modal -->
+    <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
-            Launch demo modal
-          </button>
-        <% end %>
-      </div>
-
-      <label class="btn avatar-photo">
-        <% if current_user.avatar.attached? %>
-          <%= cl_image_tag current_user.avatar.key %>
-        <% else %>
-          <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
-        <% end %>
-      </label>
-      <div>
-        <% @requests.each do |request| %>
-        <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %><%= request.user.last_name %> </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-<!-- Modal -->
-  <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" data-open-calendar-target='modalBody'>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-body" data-open-calendar-target='modalBody'>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+<!-- ACEITAR TUDO ACIMA -->

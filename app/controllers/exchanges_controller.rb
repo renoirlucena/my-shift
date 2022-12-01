@@ -15,7 +15,7 @@ class ExchangesController < ApplicationController
 
   def new
     @exchange = Exchange.new
-    authorize @car
+    authorize @exchange
   end
 
   def update
@@ -54,6 +54,6 @@ class ExchangesController < ApplicationController
   end
 
   def exchange_params # ATUALIZAR AS PERMISSOES
-    params.require(:exchange).permit(:brand, :model, :year, :km, :color, :type, :price, :location, :avaiable, :description, :user_id, photos: [])
+    params.require(:exchange).permit(:status, :user_id, :request_id)
   end
 end

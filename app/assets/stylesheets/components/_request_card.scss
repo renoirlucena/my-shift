@@ -5,9 +5,10 @@
   background-color: #004382;
   color: #fff;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
+  gap: 10px;
 
   .avatar-photo img {
     width: 150px;
@@ -15,3 +16,8 @@
   }
 }
 
+.request_card_total {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

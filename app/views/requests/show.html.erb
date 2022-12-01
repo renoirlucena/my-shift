@@ -8,10 +8,14 @@
     <p>Origem: <%= @request.origin %></p>
     <p>Destino: <%= @request.destination %></p>
 
-    <% if policy(@request).edit? %>
-      <%= link_to "Edit this request", edit_request_path(@request) %> |
-    <% end %>
-    <!-- [...] -->
-    <%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
+    <div class="d-flex gap-3">
+      <% if policy(@request).edit? %>
+        <%= link_to "Edit this request", edit_request_path(@request), class: "btn btn-primary" %>
+        <%= button_to "Destroy this request", @request, class: "btn btn-danger", method: :delete if policy(@request).destroy?%>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "Quero request", new_request_exchange_path(@request), class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>
