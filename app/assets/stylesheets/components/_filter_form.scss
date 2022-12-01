@@ -1,0 +1,43 @@
+#form-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  background-color: #fff;
+}
+
+#ida, #volta, #origem, #destino {
+  display:flex;
+  margin: 1em;
+  border-radius: 5px;
+
+  ::placeholder {
+    color: rgb(185, 185, 185);
+  }
+
+  input[type=text], input[type=date] {
+    background-color: #f1f2f6;
+    border: transparent;
+    padding: 1em;
+    border-radius: 10px;
+  }
+}
+
+#pesquisar {
+  display:flex;
+  padding: 1em;
+}
+
+.btn-pesquisar {
+  background-color: $dark-blue;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+}
+
+
+// #title-filter {
+//   text-align: center;
+//   display: inline-block;
+//   align-items: center;
+// }

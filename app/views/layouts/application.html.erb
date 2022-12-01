@@ -12,10 +12,8 @@
   </head>
 
   <body>
-    <%= turbo_frame_tag "modal" %>
-    <%= render "shared/navbar" unless action_name == "home" %>
-    <%= render "shared/home-navbar" if action_name == "home" %>
-    <%= render "shared/flashes" %>
+  <%= render "shared/navbar"%>
+  <%= render "shared/flashes" %>
 
     <%= yield %>
 
