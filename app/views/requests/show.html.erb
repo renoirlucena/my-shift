@@ -1,15 +1,17 @@
-<div class="container mt-5">
-  <h1>Request</h1>
+<%= render "shared/modal-turbo" do %>
+  <div class="container mt-5">
+    <h1>Request</h1>
 
-  <p>Nome: <%= @request.user.first_name %></p>
-  <p>Sobrenome: <%= @request.user.last_name %></p>
-  <p>Tipo de requisicao: <%= @request.request_type %></p>
-  <p>Origem: <%= @request.origin %></p>
-  <p>Destino: <%= @request.destination %></p>
+    <p>Nome: <%= @request.user.first_name %></p>
+    <p>Sobrenome: <%= @request.user.last_name %></p>
+    <p>Tipo de requisicao: <%= @request.request_type %></p>
+    <p>Origem: <%= @request.origin %></p>
+    <p>Destino: <%= @request.destination %></p>
 
-  <% if policy(@request).edit? %>
-    <%= link_to "Edit this request", edit_request_path(@request) %> |
-  <% end %>
-  <!-- [...] -->
-  <%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
-</div>
+    <% if policy(@request).edit? %>
+      <%= link_to "Edit this request", edit_request_path(@request) %> |
+    <% end %>
+    <!-- [...] -->
+    <%= button_to "Destroy this request", @request, method: :delete if policy(@request).destroy? %>
+  </div>
+<% end %>

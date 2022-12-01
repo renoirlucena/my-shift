@@ -14,3 +14,11 @@ $dark-blue: #041562;
 $light-blue: #11468F;
 $red: #DA1212;
 $ice: #EEEEEE;
+
+$modal-bg: rgba(#000000, $alpha: 0.75);
+
+// Blur for frosted effect
+$frosted-blur: blur(4px);
+
+// Transition effects
+$animate: all 0.2s ease-in-out;

@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :requests do 
+  resources :requests do
     get "calendar", to: "requests#calendar", on: :member
+    resources :exchanges, only: %i[new create]
   end
-  resources :exchanges
+  resources :exchanges, except: %i[new create]
   resources :companies
 end

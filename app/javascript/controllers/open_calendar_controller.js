@@ -7,13 +7,14 @@ export default class extends Controller {
   static targets = ["modal", "modalBody"]
 
   connect() {
+    console.log('hey from open calendar')
     console.log(this.modalBodyTarget)
     this.modal = new bootstrap.Modal(this.modalTarget)
   }
 
   open({params}) {
     const url = `/requests/${params.id}/calendar`
-    
+
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {
@@ -21,4 +22,17 @@ export default class extends Controller {
         this.modal.show()
       })
   }
+
+  pick({params}) {
+    const url = `/requests/${params.id}`
+
+    fetch(url, {headers: {"Accept": "text/plain"}})
+      .then(response => response.text())
+      .then((data) => {
+        this.modalBodyTarget.innerHTML = data
+        this.modal.show()
+      })
+  }
+
+
 }

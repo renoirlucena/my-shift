@@ -2,12 +2,7 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { Application } from "@hotwired/stimulus"
-import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-
-window.Stimulus = Application.start()
-const context = require.context("./controllers", true, /\.js$/)
-Stimulus.load(definitionsFromContext(context))
+import { application } from "./application"
 
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
@@ -17,6 +12,12 @@ application.register("flatpickr-search", FlatpickrSearchController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ModalTurboController from "./modal_turbo_controller"
+application.register("modal-turbo", ModalTurboController)
+
+import OpenCalendarController from "./open_calendar_controller"
+application.register("open-calendar", OpenCalendarController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
