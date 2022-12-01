@@ -10,7 +10,6 @@
 
 // Your CSS partials
 @import "components/index";
-@import "components/home-buttons";
 @import "components/home-navbar";
 @import "components/footer";
 @import "components/home_animation";
@@ -26,6 +25,7 @@ body{
   flex-direction: column;
   background-color: $ice;
 }
+
 footer{
   margin-top: auto;
 }
