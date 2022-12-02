@@ -11,16 +11,23 @@ export default class extends Controller {
   connect() {
     flatpickr(this.startTimeTarget, {
               enableTime: true,
-              dateFormat: "j-M-Y",
-              mode: "range",
+              dateFormat: "j-M-Y H:i",
               minDate: "today",
               altInput: true,
               altFormat: "j \\de M, Y H:i",
               time_24hr: true,
               // Provide an id for the plugin to work
-              plugins: [new rangePlugin({ input: "#request_end_time"})]
+              
               // plugins: [new confirmDatePlugin({})]
             })
-    flatpickr(this.endTimeTarget, {})
+    flatpickr(this.endTimeTarget, {
+      enableTime: true,
+      dateFormat: "j-M-Y H:i",
+      minDate: "today",
+      altInput: true,
+      altFormat: "j \\de M, Y H:i",
+      time_24hr: true,
+      // plugins: [new confirmDatePlugin({})]
+    })
   }
 }

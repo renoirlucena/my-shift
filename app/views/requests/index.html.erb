@@ -28,7 +28,13 @@
       <div class="request_card">
         <div>
             <p><%= request.exchange.present? ? "Ja em negociacao" : "Disponivel" %></p>
-            <h3> <%= request.request_type %> </h3>
+            <h3>  <% if request.request_type == "Folgar" %> </h3>
+                  <h3> Quer trabalhar? </h3>
+                  <% elsif request.request_type == "Extra" %>
+                  <h3> Quer Folgar? </h3>
+                  <% else request.request_type == "Trocar" %>
+                  <h3> Quer trocar? </h3>
+                  <% end %>
             <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
             <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
             <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
@@ -47,7 +53,7 @@
             </button>
         </div>
         <div>
-            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> <%= request.user.last_name %> </p>
+            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> <%= request.user.last_name %> quer <%= request.request_type %> </p>
             <label class="btn avatar-photo">
             <% if current_user.avatar.attached? %>
               <%= cl_image_tag current_user.avatar.key %>
