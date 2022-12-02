@@ -8,19 +8,21 @@ class RequestsController < ApplicationController
 
     if params[:start_time].present? ||
        params[:end_time].present? ||
-       params[:origin].present? ||
-       params[:destination].present?
 
       start_time = params[:start_time].blank? ? Date.new(1980,1,1) : Time.zone.parse(params[:start_time]).beginning_of_day
       end_time = params[:end_time].blank? ? Date.new(2040,1,1) : Time.zone.parse(params[:end_time]).end_of_day
 
-      query = "(start_time >= :start_time AND end_time <= :end_time) AND (origin ILIKE :origin OR destination ILIKE :destination)"
-
-      @requests = @requests.where(query, start_time: start_time,
-                                         end_time: end_time,
-                                         origin: params[:origin],
-                                         destination: params[:destination])
+      @requests = @requests.where(start_time: start_time..end_time, end_time: start_time..end_time)
     end
+
+    if params[:origin].present?
+      @requests = @requests.where("origin ILIKE ?", "%#{params[:origin]}%")
+    end
+
+    if params[:destination].present?
+      @requests = @requests.where("destination ILIKE ?", "%#{params[:destination]}%")
+    end
+
     respond_to do |format|
       format.html # Follow regular flow of Rails
       format.text { render partial: "mycalendar", locals: {request: @request}, formats: [:html] }
