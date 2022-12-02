@@ -2,7 +2,7 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col mt-5">
-        <div class="card card-registration my-4">
+        <div class="card card-registration my-4 rounded-3">
           <div class="row g-0">
             <div class="col-xl-6 d-none d-xl-block">
               <img class="photo" src="https://www.envoyair.com/wp-content/uploads/2019/05/IMG_DFW_FS_FLT_Flight_Crew_Group_Shots-9-1024x576.jpg"
@@ -10,7 +10,11 @@
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h3 class="mb-5 text-uppercase">Cadastre-se</h3>
+              <%= link_to root_path do  %>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <% end %>
+                <h3 class="mb-5 text-uppercase">Login</h3>
+
 
                 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
                   <div class="form-inputs">
