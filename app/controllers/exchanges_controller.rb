@@ -43,7 +43,7 @@ class ExchangesController < ApplicationController
 
     # current_user
     if @exchange.save
-      redirect_to requests_path
+      redirect_to exchange_path(@exchange)
     else
       render :new, status: :unprocessable_entity
     end
