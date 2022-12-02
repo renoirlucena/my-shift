@@ -23,7 +23,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <div class="d-flex align-items-center">
-            <%= link_to "Criar pedido", new_request_path, class: "btn btn-ghost", data: { turbo: true, turbo_frame: "modal"} %>
+            <%= link_to "Pedido", new_request_path, class: "btn btn-ghost", data: { turbo: true, turbo_frame: "modal"} %>
           </div>
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached? %>
