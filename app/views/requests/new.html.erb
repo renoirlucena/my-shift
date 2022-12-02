@@ -7,7 +7,7 @@
 
       <div class="d-flex justify-content-around mt-5 mb-5" id="form-bg">
         <div>
-            <%= f.input :request_type, as: :select, class: "chosen-select", collection: ["Folga", "Troca", "Extra"], prompt: 'Selecione', label: 'Tipo de requisição' %>
+            <%= f.input :request_type, as: :select, class: "chosen-select", collection: Request::REQUEST_TYPE, prompt: 'Selecione', label: 'Tipo de requisição' %>
             <%= f.input :start_time, placeholder: '00-00-0000', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } } %>
             <%= f.input :end_time, placeholder: '00-00-0000', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" } } %>
             <%= f.input :origin, placeholder: 'São Paulo', label: 'Origem' %>
