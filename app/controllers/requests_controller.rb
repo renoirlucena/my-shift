@@ -2,9 +2,10 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy calendar]
 
   def index
-    @requests = policy_scope(Request)
+    @requests_all = policy_scope(Request)
+    @requests = @requests_all.where.missing(:exchange).order(created_at: :desc)
 
-    @requests = Request.order(created_at: :desc)
+    #@requests = Request.order(created_at: :desc)
 
     if params[:start_time].present? ||
        params[:end_time].present? ||

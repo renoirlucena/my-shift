@@ -2,7 +2,7 @@ class Request < ApplicationRecord
   # include PgSearch::Model
 
   belongs_to :user
-  has_one :exchange
+  has_one :exchange, dependent: :destroy
 
   validates :start_time, presence: true
   validates :end_time, presence: true
