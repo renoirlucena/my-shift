@@ -58,6 +58,11 @@
                               required: true,
                               input_html: { autocomplete: "new-password" },
                               label: 'Confirmação de senha'%>
+                  <%= f.association :company,
+                              collection: Company.all,
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "email" } %>
                   <%= f.file_field :avatar %>
                 </div>
 
