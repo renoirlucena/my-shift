@@ -1,13 +1,14 @@
 <%= render "shared/modal-turbo" do %>
-  <h1>Request</h1>
-  <p>Nome: <%= @request.user.first_name %></p>
-  <p>Sobrenome: <%= @request.user.last_name %></p>
-  <p>Tipo de requisicao: <%= @request.request_type %></p>
-  <p>Origem: <%= @request.origin %></p>
-  <p>Destino: <%= @request.destination %></p>
-  <%= simple_form_for [@request, @exchange], html: { class: "mt-3", data: { turbo: true } } do |f| %>
-    <div class="text-center">
-      <%= f.submit 'Confirmar', class: "btn btn-primary" %>
-    </div>
-  <% end %>
+    <p class="modal-title">Novo pedido</p>
+    <hr><br>
+    <h6><strong>Nome:</strong> <%= @request.user.first_name.upcase %></h6>
+    <h6><strong>Sobrenome:</strong> <%= @request.user.last_name %></h6>
+    <h6><strong>Tipo:</strong> <%= @request.request_type.upcase %></h6>
+    <h6><strong>Origem:</strong> <%= @request.origin.upcase %></h6>
+    <h6><strong>Destino:</strong> <%= @request.destination.upcase %></h6>
+    <%= simple_form_for [@request, @exchange], html: { class: "mt-3", data: { turbo: true } } do |f| %>
+      <div class="text-center">
+        <%= f.submit 'Confirmar', class: "btn-main" %>
+      </div>
+    <% end %>
 <% end %>

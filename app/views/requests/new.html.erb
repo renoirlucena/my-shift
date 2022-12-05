@@ -3,14 +3,16 @@
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+    <p color="modal-title">Solicitação</p>
+    <hr>
     <div class="d-flex justify-content-around mt-5 mb-5" id="form-bg">
-      <div>
+        <div>
           <%= f.input :request_type, as: :select, class: "chosen-select", collection: Request::REQUEST_TYPE, prompt: 'Selecione', label: 'Tipo de requisição' %>
           <%= f.input :start_time, placeholder: '00-00-0000', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } } %>
           <%= f.input :end_time, placeholder: '00-00-0000', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" } } %>
           <%= f.input :origin, placeholder: 'São Paulo', label: 'Origem' %>
           <%= f.input :destination, placeholder: 'Rio de Janeiro', label: 'Destino' %>
-          <%= f.submit class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4' %>
+          <%= f.submit 'Confirmar', class: 'btn btn-primary hover:text-primary shadow-sm border px-4' %>
       </div>
     </div>
   <% end %>

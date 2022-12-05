@@ -3,14 +3,14 @@
   font-size: 25px;
   color: white;
   text-decoration: none;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 .navbar-icons:hover {
-  margin: 8px;
+  margin-inline: 12px;
   font-size: 25px;
   color: $red;
   text-decoration: none;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 .menuItems {
   list-style: none;

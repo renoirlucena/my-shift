@@ -2,9 +2,9 @@
 <%# OBS: When rendering, it must receive as arguments:<modal width class> %>
 <%= turbo_frame_tag "modal" do %>
   <div id="editTitleModal" data-controller="modal-turbo" data-turbo="true">
-    <div class="transparent-overlay dark-transparent-background" data-action="click->modal-turbo#closeModal"></div>
+    <div class="transparent-overlay modal-inside-card" data-action="click->modal-turbo#closeModal"></div>
     <%= turbo_frame_tag "modal-body" do %>
-      <div class="modal-card modal-lg-width">
+      <div class="modal-card">
         <i class="fas fa-times modal-close-button" data-action= "click->modal-turbo#closeModal" data-modal-layer= 'editTitleModal'></i>
         <%= yield %>
       </div>

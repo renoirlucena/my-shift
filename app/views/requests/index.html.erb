@@ -55,7 +55,7 @@
             <% if request.user.avatar.attached? %>
               <%= cl_image_tag request.user.avatar.key %>
             <% else %>
-              <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
+              <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
             </label>
             <% end %>
             <p class="m-3"> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> quer <%= request.request_type %> </p>
