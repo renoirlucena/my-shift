@@ -40,27 +40,25 @@
             <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
 
               <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
-              <div class="d-flex gap-3">
               <% if policy(request).edit? %>
                 <%= link_to "Editar minha requisição", edit_request_path(request), class: "btn btn-primary" if policy(request).edit?%>
                 <%= button_to "Destruir minha requisição", request, class: "btn btn-danger", method: :delete if policy(request).destroy?%>
               <% end %>
-              </div>
               <!-- Button trigger modal -->
 
             <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
-              Ver calendário
+              <i class="fa-solid fa-calendar-days"></i>
             </button>
         </div>
         <div>
-            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> <%= request.user.last_name %> quer <%= request.request_type %> </p>
             <label class="btn avatar-photo">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key %>
+            <% if request.user.avatar.attached? %>
+              <%= cl_image_tag request.user.avatar.key %>
             <% else %>
               <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
             </label>
             <% end %>
+            <p class="m-3"> <i class="fa-solid fa-user"></i> <%= request.user.first_name %> quer <%= request.request_type %> </p>
         </div>
       </div>
       <% end %>
