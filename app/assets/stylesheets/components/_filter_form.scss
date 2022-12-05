@@ -10,13 +10,16 @@
   display:flex;
   margin: 1em;
   border-radius: 5px;
+  height: 3em;
 
   ::placeholder {
     color: rgb(185, 185, 185);
   }
 
   input[type=text], input[type=date] {
+    // position: absolute;
     background-color: #f1f2f6;
+    outline: none;
     border: transparent;
     padding: 1em;
     border-radius: 10px;
@@ -34,7 +37,6 @@
   padding: 0.5em 1em;
   border-radius: 5px;
 }
-
 
 // #title-filter {
 //   text-align: center;
