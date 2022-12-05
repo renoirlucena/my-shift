@@ -12,7 +12,7 @@
           <%= f.input :end_time, placeholder: '00-00-0000', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" } } %>
           <%= f.input :origin, placeholder: 'São Paulo', label: 'Origem' %>
           <%= f.input :destination, placeholder: 'Rio de Janeiro', label: 'Destino' %>
-          <%= f.submit 'Confirmar', class: 'btn btn-primary hover:text-primary shadow-sm border px-4' %>
+          <%= f.submit 'Confirmar', class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4', input_html: { data: { 'flatpickr-target': "btnSubmit" } }%>
       </div>
     </div>
   <% end %>

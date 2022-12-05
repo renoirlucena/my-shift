@@ -51,3 +51,20 @@
   flex-direction: column;
   gap: 10px;
 }
+
+
+.index-icons {
+  border: 1px solid $dark-blue;
+  color: $dark-blue;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.index-icons:hover {
+  color: $red;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+}
+
