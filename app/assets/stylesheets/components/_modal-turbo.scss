@@ -19,7 +19,7 @@
 // MODAL CARD
 .modal-card {
   // Colors
-  background-color: black;
+  background-color: $light-blue;
   color: $white;
   // Shape & Size
   border-radius: 0.4rem;
@@ -38,7 +38,7 @@
   z-index: 1001;
   .modal-close-button {
     font-size: 1.2rem;
-    color: yellow;
+    color: $ice;
     opacity: 0;
     transition: $animate;
     position: absolute;
@@ -46,7 +46,7 @@
     cursor: pointer;
     right: 1rem;
     &:hover {
-      color: lightgreen;
+      color: $red;
     }
   }
   &:hover {
