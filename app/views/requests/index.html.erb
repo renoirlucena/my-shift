@@ -43,7 +43,7 @@
             <div class="d-flex gap-3">
             <% if policy(request).edit? %>
               <%= link_to "Editar minha requisição", edit_request_path(request), class: "btn btn-primary", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
-              <%= link_to "Destruir minha requisição", request, class: "btn btn-danger", data: { turbo: true, turbo_frame: "modal"}, method: :delete if policy(request).destroy? %>
+              <%= link_to "Destruir minha requisição", request, class: "btn btn-danger", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Cancelar requisição?", turbo_frame: "modal"} %>
             <% end %>
             </div>
             <!-- Button trigger modal -->
