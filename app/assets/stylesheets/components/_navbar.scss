@@ -1,3 +1,17 @@
+.navbar-icons {
+  margin-inline: 12px;
+  font-size: 25px;
+  color: white;
+  text-decoration: none;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+.navbar-icons:hover {
+  margin: 8px;
+  font-size: 25px;
+  color: $red;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
 .menuItems {
   list-style: none;
   display: flex;
@@ -7,8 +21,12 @@
 }
 
 .logo-nav {
-  border-radius: 5px;
+  border-radius: 50%;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);;
+}
+.logo-nav:hover {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);;
+
 }
 .navbar-lewagon {
   justify-content: space-between;
@@ -30,11 +48,11 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .avatar-navbar:hover {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 li {
@@ -43,29 +61,14 @@ li {
   a {
     text-decoration: none;
     color: $ice;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
-    transition: all 0.5s ease-in-out;
-    position: relative;
-
-    &::before {
-      content: attr(data-item);
-      transition: 0.5s;
-      color: $red;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 0;
-      overflow: hidden;
-    }
 
     &:hover {
-      &::before {
         width: 100%;
-        transition: all 0.5s ease-in-out;
-      }
+        color: $red;
+
     }
+
   }
 }
