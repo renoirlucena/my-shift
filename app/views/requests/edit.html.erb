@@ -5,7 +5,6 @@
 
     <%= f.input :request_type,
                 as: :select,
-                select: @request.request_type,
                 collection: Request::REQUEST_TYPE,
                 label: false,
                 autofocus: true %>
@@ -20,12 +19,12 @@
     <%= f.input :start_time,
                 label: 'Ida',
                 as: :string,
-                prefixe: @request.start_time,
+                autofocus: true,
                 input_html: { data: { 'flatpickr-target': "startTime" } } %>
     <%= f.input :end_time,
                 label: 'Volta',
                 as: :string,
-                placeholder: @request.end_time,
+                autofocus: true,
                 input_html: { data: { 'flatpickr-target': "endTime" } } %>
     <%= f.submit class: "btn-capsule-sm btn-outline-gold mt-3" %>
   <% end %>

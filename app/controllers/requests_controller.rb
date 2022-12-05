@@ -59,7 +59,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to requests_path, notice: "Sua solicitação foi excluída."
+    redirect_to requests_path, status: :see_other, notice: "Sua solicitação foi excluída."
   end
 
   def create
