@@ -11,7 +11,7 @@ class RequestsController < ApplicationController
        params[:end_time].present? ||
 
       start_time = params[:start_time].blank? ? Date.new(1980,1,1) : Time.zone.parse(params[:start_time]).beginning_of_day
-      end_time = params[:end_time].blank? ? Date.new(2040,1,1) : Time.zone.parse(params[:end_time]).end_of_day
+      end_time = params[:end_time].blank? ? Date.new(2040, 1, 1) : Time.zone.parse(params[:end_time]).end_of_day
 
       @requests = @requests.where(start_time: start_time..end_time, end_time: start_time..end_time)
     end
@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       format.html # Follow regular flow of Rails
-      format.text { render partial: "mycalendar", locals: {request: @request}, formats: [:html] }
+      format.text { render partial: "mycalendar", locals: { request: @request }, formats: [:html] }
     end
   end
 
@@ -50,7 +50,7 @@ class RequestsController < ApplicationController
 
   def update
     authorize @request
-    if @request.update!(request_params)
+    if @request.update(request_params)
       redirect_to requests_path, notice: "Sua solicitação foi alterada com sucesso."
     else
       render :edit, status: :unprocessable_entity
@@ -66,6 +66,9 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     @request.user = current_user
     authorize @request
+    range = params[:request][:start_time].split(' to ')
+    @request.start_time = range.first
+    @request.end_time = range.last
     # current_user
     if @request.save
       redirect_to requests_path

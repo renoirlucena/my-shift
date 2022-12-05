@@ -5,6 +5,8 @@
   <p>Tipo de requisicao: <%= @request.request_type %></p>
   <p>Origem: <%= @request.origin %></p>
   <p>Destino: <%= @request.destination %></p>
+  <p>Ida: <%= @request.start_time %></p>
+  <p>Volta: <%= @request.end_time %></p>
   <%= simple_form_for [@request, @exchange], html: { class: "mt-3", data: { turbo: true } } do |f| %>
     <div class="text-center">
       <%= f.submit 'Confirmar', class: "btn btn-primary" %>
