@@ -49,8 +49,9 @@ class RequestsController < ApplicationController
   end
 
   def update
+    authorize @request
     if @request.update!(request_params)
-      redirect_to @request, notice: "Sua solicitação foi alterada com sucesso."
+      redirect_to requests_path, notice: "Sua solicitação foi alterada com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -58,7 +59,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to requests_path, notice: "Sua solicitação foi excluída."
+    redirect_to requests_path, status: :see_other, notice: "Sua solicitação foi excluída."
   end
 
   def create
