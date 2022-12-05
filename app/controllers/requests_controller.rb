@@ -5,8 +5,6 @@ class RequestsController < ApplicationController
     @requests_all = policy_scope(Request)
     @requests = @requests_all.where.missing(:exchange).order(created_at: :desc)
 
-    #@requests = Request.order(created_at: :desc)
-
     if params[:start_time].present? ||
        params[:end_time].present? ||
 
