@@ -21,3 +21,6 @@ application.register("open-calendar", OpenCalendarController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
+
+import CitiesController from "./cities_controller"
+application.register("cities", CitiesController)
