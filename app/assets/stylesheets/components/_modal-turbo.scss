@@ -1,7 +1,5 @@
 // LAYER WITH TRANSPARENCY THAT WILL OVERLAP THE REST OF THE PAGE
 .transparent-overlay {
-  height: 100%;
-  width: 100%;
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -11,22 +9,28 @@
   left: 0;
 }
 
-// DARK BACKGROUND
-.dark-transparent-background {
-  background-color: $modal-bg;
-}
-
 // MODAL CARD
+.modal-inside-card {
+  padding: 5px;
+  background-color: $ice;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+
+}
 .modal-card {
+  border: 5px;
+  border-color: $ice;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
   // Colors
-  background-color: black;
-  color: $white;
+  background-color: $white;
+  color: $dark-blue;
   // Shape & Size
   border-radius: 0.4rem;
   margin: 50vh auto;
-  max-height: 80vh;
+  width: fit-content;
   overflow-y: auto;
-  padding: 1.5rem 2.5rem;
+  padding: 20px;
+  padding-inline: 50px;
   // Display & Position
   display: flex;
   flex-direction: column;
@@ -37,16 +41,20 @@
   transform: translateY(-50%);
   z-index: 1001;
   .modal-close-button {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     font-size: 1.2rem;
-    color: yellow;
+    color: $dark-blue;
+    background-color: $ice;
+    border-radius: 100%;
     opacity: 0;
+    padding: 10px;
     transition: $animate;
     position: absolute;
     top: 1rem;
     cursor: pointer;
     right: 1rem;
     &:hover {
-      color: lightgreen;
+      color: $red;
     }
   }
   &:hover {
@@ -59,6 +67,10 @@
   }
 }
 
+hr {
+  border: 1px solid $dark-blue;
+  width: 100%
+}
 // MODAL WIDTHS
 
 // Standard width for shorter pages
@@ -74,10 +86,12 @@
 }
 
 .modal-title {
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: 1.5rem !important;
   text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+  text-shadow: 5px;
+  margin: 2px
+
 }
 
 .modal-open {

@@ -9,6 +9,8 @@ export default class extends Controller {
   static targets = [ "startTime", "endTime" ]
 
   connect() {
+    console.log(this.startTimeTarget.value)
+    console.log(this.endTimeTarget.value)
     flatpickr(this.startTimeTarget, {
               enableTime: true,
               dateFormat: "j-M-Y H:i",
@@ -16,18 +18,12 @@ export default class extends Controller {
               altInput: true,
               altFormat: "j \\de M, Y H:i",
               time_24hr: true,
-              // Provide an id for the plugin to work
-              
-              // plugins: [new confirmDatePlugin({})]
+              allowInput: true,
+              plugins: [new rangePlugin({ input: "#request_end_time"})],
+              defaultDate: [this.startTimeTarget.value, this.endTimeTarget.value]
             })
-    flatpickr(this.endTimeTarget, {
-      enableTime: true,
-      dateFormat: "j-M-Y H:i",
-      minDate: "today",
-      altInput: true,
-      altFormat: "j \\de M, Y H:i",
-      time_24hr: true,
-      // plugins: [new confirmDatePlugin({})]
-    })
+    flatpickr(this.endTimeTarget, {allowInput: true, defaultDate: new Date(this.endTimeTarget.value)})
   }
 }
+
+// new Date(this.endTimeTarget.value)
