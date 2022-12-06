@@ -25,6 +25,12 @@
 
   <div class="container">
     <div class="request_card_total">
+      <% @exchanges.each do |exchange| %>
+        <div class="request_card">
+          <%= exchange.status %>
+          <%= exchange.request.origin %>
+        </div>
+      <% end %>
       <% @requests.each do |request| %>
         <% if request.user.company == current_user.company  %>
         <div class="request_card">
