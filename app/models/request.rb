@@ -12,7 +12,7 @@ class Request < ApplicationRecord
   validates :request_type, inclusion: { in: REQUEST_TYPE }
 
   validates :start_time, :end_time, presence: true
-  validate :end_time_after_start_time
+  # validate :end_time_after_start_time
 
   private
 
@@ -20,7 +20,7 @@ class Request < ApplicationRecord
     return if end_time.blank? || start_time.blank?
 
     if end_time < start_time
-      errors.add(:end_time, "Data invalida! Deve ser maior que data da ida.")
+      errors.add(:end_time, "Data inválida! Deve ser maior que a data da ida.")
     end
   end
 end
