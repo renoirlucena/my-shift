@@ -19,15 +19,15 @@ class ExchangePolicy < ApplicationPolicy
   end
 
   def edit?
-    owner?
+    true
   end
 
   def update?
-    owner?
+    true
   end
 
   def destroy?
-    owner?
+    true
   end
 
   private

@@ -23,11 +23,9 @@ class ExchangesController < ApplicationController
   end
 
   def update
-    if @exchange.update(exchange_params)
-      redirect_to @exchange, notice: "Sua exchange foi atualizada"
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @exchange.status = 'Confirmado'
+    @exchange.save
+    redirect_to requests_path, notice: "Sua exchange foi atualizada"
   end
 
   def destroy
@@ -59,7 +57,7 @@ class ExchangesController < ApplicationController
     authorize @exchange
   end
 
-  def exchange_params # ATUALIZAR AS PERMISSOES
-    params.require(:exchange).permit(:status, :user_id, :request_id)
+  def exchange_params
+    params.require(:exchange).permit(:status, :user, :user_id, :request_id)
   end
 end

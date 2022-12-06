@@ -25,12 +25,37 @@
 
   <div class="container">
     <div class="request_card_total">
+
+      <!-- DIV relacionada a exchange -->
       <% @exchanges.each do |exchange| %>
-        <div class="request_card">
-          <%= exchange.status %>
-          <%= exchange.request.origin %>
-        </div>
+        <% if exchange.request.user == current_user %>
+          <div class="request_card bg-secondary bg-gradient text-white">
+            <div>
+              <div class="bg-light bg-gradient text-secondary text-center py-1 mb-2 rounded-3"><strong><%= exchange.status.upcase %></strong></div>
+              <h5>Você pediu para<strong> <%= exchange.request.request_type %></strong></h5>
+              <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
+              <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
+              <%= link_to "Aprovar", exchange_path(exchange), class: "fa-solid fa-check bg-light bg-gradient text-secondary text-center py-1 rounded-3 p-2", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
+              <%= link_to "Recusar", exchange_path(exchange), class: "fa-solid fa-check bg-light bg-gradient text-secondary text-center py-1 rounded-3 p-2", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
+            </div>
+            <div>
+              <label class="btn avatar-photo">
+                <% if exchange.user.avatar.attached? %>
+                  <%= cl_image_tag exchange.user.avatar.key %>
+                <% else %>
+                  <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
+                <% end %>
+              </label>
+              <p> <i class="fa-solid fa-user"></i> <%= exchange.user.first_name %> pegou sua requisição </p>
+            </div>
+          </div>
+        <% elsif exchange.user == current_user %>
+          <p>sou o dono da exchange</p>
+        <% end %>
       <% end %>
+      <!-- DIV relacionada a exchange -->
+
+      <!-- DIV relacionada a request -->
       <% @requests.each do |request| %>
         <% if request.user.company == current_user.company  %>
         <div class="request_card">
@@ -57,14 +82,14 @@
               </div>
           </div>
           <div>
-              <label class="btn avatar-photo">
+            <label class="btn avatar-photo">
               <% if request.user.avatar.attached? %>
-              <%= cl_image_tag request.user.avatar.key %>
+                <%= cl_image_tag request.user.avatar.key %>
               <% else %>
                 <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
-              </label>
-              <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
               <% end %>
+            </label>
+            <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
           </div>
           <% else %>
           Não existem pedidos na sua companhia aérea.
@@ -72,8 +97,9 @@
         </div>
         <% end %>
       </div>
+      <!-- DIV relacionada a request -->
 
-  <!-- Modal -->
+    <!-- Modal -->
     <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -89,5 +115,7 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+
   </div>
 </div>
