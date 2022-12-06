@@ -1,15 +1,22 @@
-<div class="container mt-5 d-flex col align-items-center gap-5">
-  <div class="row">
-    <div class="col">
-      <h1>Contatar <strong><%= @request.user.first_name.capitalize %></strong></h1>
-      <p><strong>Tipo de requisicao: </strong><%= @request.request_type %></p>
-      <p><strong>Origem: </strong><%= @request.origin %></p>
-      <p><strong>Destino: </strong><%= @request.destination %></p>
+<div class="card-exchange">
+  <div>
+    <div>
+      <label class="btn avatar-photo">
+      <% if @request.user.avatar.attached? %>
+      <%= cl_image_tag request.user.avatar.key %>
+      <% else %>
+        <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
+      </label>
+      <p> <i class="fa-solid fa-user"></i> <%= @request.user.first_name.capitalize %> quer <%= @request.request_type %> </p>
+      <% end %>
+      <p> <i class="fa-regular fa-calendar"></i> <%= l @request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l @request.end_time, format: :short %> </p>
+      <p> <i class="fa-solid fa-location-dot"></i> <%= @request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= @request.destination %> </p>
+      <p><strong>Entrar em contato:  <a class="icone-whatsapp" href="https://wa.me/<%= @request.user.phone %>"><i class="fa-brands fa-whatsapp"></i></a> </strong></p>
+      <%= link_to "Voltar", requests_path, class: "btn btn-primary"%>
     </div>
-    <div class="col">
-      <p><strong>Entrar em contato: </strong></p>
-      <a class="icone-whatsapp" href="https://wa.me/<%= @request.user.phone %>"><i class="fa-brands fa-whatsapp"></i></a>
+    <div>
     </div>
   </div>
-  <%= link_to "Voltar", requests_path, class: "btn btn-primary"%>
 </div>
+
+
