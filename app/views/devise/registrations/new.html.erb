@@ -14,7 +14,7 @@
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
             <%= link_to root_path do %>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             <% end %>
                 <h3 class="mb-5 text-uppercase">Cadastre-se</h3>
 
@@ -38,7 +38,7 @@
                               required: true,
                               autofocus: true,
                               input_html: { autocomplete: "RE" },
-                              label: 'RE'%>
+                              label: 'R.E.'%>
                   <%= f.input :phone,
                               required: true,
                               autofocus: true,
@@ -62,7 +62,8 @@
                               collection: Company.all,
                               required: true,
                               autofocus: true,
-                              input_html: { autocomplete: "email" } %>
+                              input_html: { autocomplete: "email" },
+                              label: 'Companhia' %>
                   <%= f.file_field :avatar %>
                 </div>
 
