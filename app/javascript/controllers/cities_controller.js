@@ -6,6 +6,7 @@ export default class extends Controller {
   static values = { key: String }
 
   connect() {
+    console.log(this.element)
     this.geocoder = new MapboxGeocoder({
       accessToken: this.keyValue,
       types: "place"

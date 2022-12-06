@@ -81,13 +81,12 @@
 
       <!-- DIV relacionada a request -->
       <% @requests.each do |request| %>
-        <% if request.user.company == current_user.company  %>
         <div class="request_card">
           <div>
               <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
               <h3>  <% if request.request_type == "Folgar" %> </h3>
                     <h3> Quer trabalhar? </h3>
-                    <% elsif request.request_type == "Extra" %>
+                    <% elsif request.request_type == "Trabalhar" %>
                     <h3> Quer Folgar? </h3>
                     <% else request.request_type == "Trocar" %>
                     <h3> Quer trocar? </h3>
@@ -95,6 +94,7 @@
               <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
               <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
               <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
+              <p> <%= request.user.company.name %></p>
 
               <div class="d-flex gap-3">
                 <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
@@ -115,13 +115,15 @@
             </label>
             <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
           </div>
-          <% else %>
-          Não existem pedidos na sua companhia aérea.
-          <% end %>
+
         </div>
         <% end %>
       </div>
       <!-- DIV relacionada a request -->
+      
+      <% if @requests.count.zero?  %>
+        <h3> Ainda não existem pedidos dentro da sua companhia</h3>
+      <% end %>
 
     <!-- Modal -->
     <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
