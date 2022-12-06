@@ -7,7 +7,7 @@ class Request < ApplicationRecord
   validates :origin, presence: true
   validates :destination, presence: true
 
-  REQUEST_TYPE = ["Folgar", "Trocar", "Extra"]
+  REQUEST_TYPE = ["Folgar", "Trocar", "Trabalhar"]
   validates :request_type, presence: true
   validates :request_type, inclusion: { in: REQUEST_TYPE }
 
