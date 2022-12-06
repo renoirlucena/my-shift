@@ -12,7 +12,7 @@ class Request < ApplicationRecord
   validates :request_type, inclusion: { in: REQUEST_TYPE }
 
   validates :start_time, :end_time, presence: true
-  validate :end_time_after_start_time
+  # validate :end_time_after_start_time
 
   private
 

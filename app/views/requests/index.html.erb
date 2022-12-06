@@ -20,7 +20,12 @@
       </div>
     <% end %>
   </div>
-
+  <% @exchanges.each do |exchange| %>
+    <div>
+      <%= exchange.status %>
+      <%= exchange.request.origin %>
+    </div>
+  <% end %>
 <!-- ACEITAR TUDO ABAIXO -->
   <div class="container">
     <div class="request_card_total">
@@ -43,8 +48,8 @@
                 <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
                 <div class="d-flex gap-3">
                 <% if policy(request).edit? %>
-                  <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons" if policy(request).edit?%>
-                  <%= button_to "", request, class: "fa-regular fa-trash-can index-icons", method: :delete if policy(request).destroy?%>
+                  <%= link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
+                  <%= button_to "", request, class: "fa-regular fa-trash-can index-icons", data: { turbo: true, turbo_confirm: "Deletar requisicao?", turbo_frame: "modal"}, method: :delete if policy(request).destroy? %>
                   <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
                   <i class="fa-solid fa-calendar-days"></i>
                   </button>
