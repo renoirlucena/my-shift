@@ -1,3 +1,17 @@
+.login-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: fit-content;
+  max-width: fit-content;
+  background-color: white;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+
+}
+
+
 .gradient-custom-2 {
   /* fallback for old browsers */
   background: $ice;
@@ -10,8 +24,8 @@
   }
 
 .photo {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   object-fit: cover;
 }
 
@@ -33,14 +47,4 @@
   border-top-right-radius: .3rem;
   border-bottom-right-radius: .3rem;
   }
-}
-
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-  font-size: 1rem;
-  line-height: 2.15;
-  padding-left: .75em;
-  padding-right: .75em;
-  }
-  .card-registration .select-arrow {
-  top: 13px;
 }
