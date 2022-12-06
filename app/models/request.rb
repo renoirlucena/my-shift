@@ -14,7 +14,10 @@ class Request < ApplicationRecord
   validates :start_time, :end_time, presence: true
   validate :end_time_after_start_time
 
+  after_create :newRequest
+
   private
+
 
   def end_time_after_start_time
     return if end_time.blank? || start_time.blank?
