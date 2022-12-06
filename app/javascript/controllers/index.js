@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CitiesController from "./cities_controller"
+application.register("cities", CitiesController)
+
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 
@@ -21,6 +24,3 @@ application.register("open-calendar", OpenCalendarController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
-
-import CitiesController from "./cities_controller"
-application.register("cities", CitiesController)
