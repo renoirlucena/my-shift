@@ -9,31 +9,34 @@
       <div id="volta">
         <%= text_field_tag :end_time, params[:end_time], data: { 'flatpickr-search-target': "endTime" }, placeholder: "Volta" %>
       </div>
-      <div id="origem">
-        <%= text_field_tag :origin, params[:origin], placeholder: "Origem" %>
+      <div id="origem" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>">
+        <%= text_field_tag :origin, params[:origin], placeholder: "Origem", data: { cities_target: "input" }, class: "d-none" %>
       </div>
-      <div id="destino">
-        <%= text_field_tag :destination, params[:destination], placeholder: "Destino" %>
+      <div id="destino" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>">
+        <%= text_field_tag :destination, params[:destination], placeholder: "Destino", data: { cities_target: "input" }, class: "d-none" %>
       </div>
       <div id="pesquisar">
-        <%= submit_tag "Pesquisar", class: "btn-main" %>
+        <%= button_tag type: 'submit', class: "btn-main", id: "register-button" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       </div>
     <% end %>
   </div>
+
   <% @exchanges.each do |exchange| %>
     <div>
       <%= exchange.status %>
       <%= exchange.request.origin %>
     </div>
   <% end %>
-<!-- ACEITAR TUDO ABAIXO -->
+
   <div class="container">
     <div class="request_card_total">
       <% @requests.each do |request| %>
         <% if request.user.company == current_user.company  %>
         <div class="request_card">
           <div>
-              <p><%= request.exchange.present? ? "Ja em negociacao" : "Disponivel" %></p>
+              <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
               <h3>  <% if request.request_type == "Folgar" %> </h3>
                     <h3> Quer trabalhar? </h3>
                     <% elsif request.request_type == "Extra" %>
@@ -93,4 +96,3 @@
     </div>
   </div>
 </div>
-<!-- ACEITAR TUDO ACIMA -->

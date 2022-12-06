@@ -5,11 +5,12 @@
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo-rails": "^7.2.4",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
-    "typed.js": "^2.0.12",
     "flatpickr": "^4.6.13",
     "shortcut-buttons-flatpickr": "^0.4.0",
+    "typed.js": "^2.0.12",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
