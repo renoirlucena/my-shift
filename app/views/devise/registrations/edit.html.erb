@@ -1,5 +1,5 @@
 <div class="container mt-5 container-my-profile">
-  <h2>My profile <strong><%= current_user.first_name.capitalize %></strong></h2>
+  <h2>Meu perfil <strong><%= current_user.first_name.capitalize %></strong></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -8,37 +8,46 @@
       <div class="form-inputs col-lg-6">
         <%= f.input :email, required: true, autofocus: true %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <p>Aguardando confirmação em: <%= resource.unconfirmed_email %></p>
         <% end %>
          <%= f.input :first_name,
                     required: false,
-                    input_html: { autocomplete: "name" }%>
+                    input_html: { autocomplete: "Nome" },
+                    label: 'Nome'%>
         <%= f.input :last_name,
                     required: false,
-                    input_html: { autocomplete: "last name" }%>
+                    input_html: { autocomplete: "last name" },
+                    label: 'Sobrenome'%>
         <%= f.input :cpf,
                     required: false,
-                    input_html: { autocomplete: "CPF" }%>
+                    input_html: { autocomplete: "CPF" },
+                    label: 'CPF'%>
         <%= f.input :re,
                     required: false,
-                    input_html: { autocomplete: "RE" }%>
+                    input_html: { autocomplete: "RE" },
+                    label: 'R.E.'%>
         <%= f.input :phone,
                     required: false,
-                    input_html: { autocomplete: "phone" }%>
+                    input_html: { autocomplete: "phone" },
+                    label: 'Telefone'%>
         <%= f.input :email,
                     required: false,
-                    input_html: { autocomplete: "email" }%>
+                    input_html: { autocomplete: "email" },
+                    label: 'Email'%>
         <%= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
+                    hint: "Deixe em branco caso não queira alterar a senha.",
                     required: false,
-                    input_html: { autocomplete: "new-password" } %>
+                    input_html: { autocomplete: "new-password" },
+                    label: 'Alterar senha' %>
         <%= f.input :password_confirmation,
                     required: false,
-                    input_html: { autocomplete: "new-password" } %>
+                    input_html: { autocomplete: "new-password" },
+                    label: 'Confirmar nova senha' %>
         <%= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
+                    hint: "Precisamos da sua senha atual para efetuar as alterações.",
                     required: true,
-                    input_html: { autocomplete: "current-password" } %>
+                    input_html: { autocomplete: "current-password" },
+                    label: 'Senha atual' %>
       </div>
 
       <!--Avatar Upload Field-->
@@ -49,7 +58,7 @@
           <% else %>
             <%= image_tag "https://randomuser.me/api/portraits/women/49.jpg"%>
           <% end %>
-          <div class="avatar-edit rounded"><i class="fa-regular fa-pen-to-square"></i> Edit</div>
+          <div class="avatar-edit rounded"><i class="fa-regular fa-pen-to-square"></i> Editar</div>
           <span style="display:none;">
             <%= f.file_field :avatar, class: "btn btn-primary" %>
           </span>
@@ -59,12 +68,12 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Update", class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4' %>
+      <%= f.button :submit, "Atualizar", class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4' %>
     </div>
   <% end %>
 
   <div class="d-flex align-items-center">
-    <div>Unhappy?</div>
-    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
-  </div>
+    <div>Não está contente?</div>
+      <%= button_to "Cancelar minha conta.", registration_path(resource_name), data: { confirm: "Tem certeza?" }, method: :delete, class: "btn btn-danger cancelar" %>
+    </div>
 </div>
