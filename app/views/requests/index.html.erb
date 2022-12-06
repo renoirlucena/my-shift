@@ -40,19 +40,15 @@
               <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
               <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
               <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
-            
-                <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
-                <div class="d-flex gap-3">
-                <% if policy(request).edit? %>
-                  <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons" if policy(request).edit?%>
-                  <%= button_to "", request, class: "fa-regular fa-trash-can index-icons", method: :delete if policy(request).destroy?%>
-                  <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
-                  <i class="fa-solid fa-calendar-days"></i>
-                  </button>
-                <% end %>
-                </div>
-                <!-- Button trigger modal -->
 
+              <div class="d-flex gap-3">
+                <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
+                <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
+                <%= link_to "", request, class: "fa-regular fa-trash-can index-icons", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Cancelar requisição?", turbo_frame: "modal"} if policy(request).destroy? %>
+                <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
+                <i class="fa-solid fa-calendar-days"></i>
+                </button>
+              </div>
           </div>
           <div>
               <label class="btn avatar-photo">
