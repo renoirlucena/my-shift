@@ -4,6 +4,7 @@
   <div id="editTitleModal" data-controller="modal-turbo" data-turbo="true">
     <div class="transparent-overlay modal-inside-card" data-action="click->modal-turbo#closeModal"></div>
     <%= turbo_frame_tag "modal-body" do %>
+      <i class="fas fa-times modal-close-button" data-action="click->modal-turbo#closeModal"></i>
       <div class="modal-card">
         <i class="fas fa-times modal-close-button" data-action= "click->modal-turbo#closeModal" data-modal-layer= 'editTitleModal'></i>
         <%= yield %>
