@@ -6,14 +6,15 @@ export default class extends Controller {
   static values = { key: String }
 
   connect() {
-    console.log(this.element)
     this.geocoder = new MapboxGeocoder({
       accessToken: this.keyValue,
-      types: "place"
+      types: "place",
+      placeholder: "Destino"
     })
     this.geocoder.addTo(this.element)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
+    // console.log(this.geocoder[0])
   }
 
   #setInputValue(event) {
