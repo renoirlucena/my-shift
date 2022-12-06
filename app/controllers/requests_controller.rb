@@ -3,6 +3,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests_all = policy_scope(Request)
+    @exchanges = Exchange.all.where(status: "Pendente")
     @requests = @requests_all.where.missing(:exchange).order(created_at: :desc)
 
     if params[:start_time].present? ||
