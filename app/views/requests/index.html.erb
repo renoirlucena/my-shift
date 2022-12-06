@@ -35,8 +35,8 @@
               <h5>Você pediu para<strong> <%= exchange.request.request_type %></strong></h5>
               <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
               <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
-              <%= link_to "Aprovar", exchange_path(exchange), class: "fa-solid fa-check bg-light bg-gradient text-secondary text-center py-1 rounded-3 p-2", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
-              <%= link_to "Recusar", exchange_path(exchange), class: "fa-solid fa-check bg-light bg-gradient text-secondary text-center py-1 rounded-3 p-2", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
+              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-check h5 text-decoration-none text-white d-inline-flex bg-success bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
+              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-x h5 text-decoration-none text-white d-inline-flex bg-danger bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
             </div>
             <div>
               <label class="btn avatar-photo">
