@@ -26,7 +26,6 @@
   <div class="container">
     <div class="request_card_total">
       <% @requests.each do |request| %>
-        <% if request.user.company == current_user.company  %>
         <div class="request_card">
           <div>
               <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
@@ -60,12 +59,13 @@
               <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
               <% end %>
           </div>
-          <% else %>
-          Não existem pedidos na sua companhia aérea.
-          <% end %>
+          
         </div>
         <% end %>
       </div>
+      <% if @requests.count.zero?  %>
+        <h3> Ainda não existem pedidos dentro da sua companhia</h3>
+      <% end %>
 
   <!-- Modal -->
     <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
