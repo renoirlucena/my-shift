@@ -1,43 +1,43 @@
-<section class="h-100">
-  <div class="container py-5 h-100">
-    <div class="row login-card">
-            <div class="col-xl-6 d-none d-xl-block">
-              <img class="photo" src="https://www.envoyair.com/wp-content/uploads/2019/05/IMG_DFW_FS_FLT_Flight_Crew_Group_Shots-9-1024x576.jpg"
-                alt="flight-attendant">
-            </div>
-            <div class="col-xl-6">
-              <div class="p-md-5 text-black">
-                <%= link_to root_path do  %>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <% end %>
-                <h3 class="mb-4 text-uppercase">Login</h3>
-                <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-                  <div class="form-inputs">
-                    <%= f.input :email,
-                                required: false,
-                                autofocus: true,
-                                input_html: { autocomplete: "email" } %>
-                    <%= f.input :password,
-                                required: false,
-                                input_html: { autocomplete: "current-password" } %>
-                    <%= f.input :remember_me,
-                                label: 'Lembre-se de mim',
-                                as: :boolean if devise_mapping.rememberable? %>
-                  </div>
-                  <div class="form-actions">
-                    <%= f.button :submit, "Entrar", class: "btn-main mb-2" %>
-                  </div>
-                <% end %>
-                <%= render "devise/shared/links" %>
+<div class="container login-margin-top card-login">
+  <div class="card card-login">
+    <div class="row g-0">
+      <div class="col-xl-6 d-none d-xl-block">
+        <img class="photo" src="https://www.envoyair.com/wp-content/uploads/2019/05/IMG_DFW_FS_FLT_Flight_Crew_Group_Shots-9-1024x576.jpg"
+          alt="flight-attendant">
+      </div>
+      <div class="col-xl-6">
+        <div class="login-window p-md-5 text-black">
+        <%= link_to root_path do  %>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <% end %>
+          <h3 class="mb-4 text-uppercase">Login</h3>
 
-              <%# <%= link_to "Log in", sign_in_path %>
-              <%# <%= render "devise/shared/links" %>
 
-              </div>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :email,
+                          required: false,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" } %>
+              <%= f.input :password,
+                          required: false,
+                          input_html: { autocomplete: "current-password" } %>
+              <%= f.input :remember_me,
+                          label: 'Lembre-se de mim',
+                          as: :boolean if devise_mapping.rememberable? %>
             </div>
 
+            <div class="form-actions">
+              <%= f.button :submit, "Entrar", class: "btn-main mb-2" %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
 
+        <%# <%= link_to "Log in", sign_in_path %>
+        <%# <%= render "devise/shared/links" %>
 
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
