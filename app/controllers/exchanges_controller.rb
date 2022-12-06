@@ -18,12 +18,12 @@ class ExchangesController < ApplicationController
 
   def new
     @request = Request.find(params[:request_id])
-    @exchange = Exchange.new(request: @request, user: current_user)
+    @exchange = Exchange.new
     authorize @exchange
   end
 
   def update
-    if @exchange.update(exchange_params)
+    if @exchange.update!(exchange_params)
       redirect_to @exchange, notice: "Sua exchange foi atualizada"
     else
       render :edit, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class ExchangesController < ApplicationController
 
   def destroy
     @exchange.destroy
-    redirect_to requests_path, notice: "Exchange cancelada com sucesso!"
+    redirect_to exchanges_path, notice: "Exchange cancelada com sucesso!"
   end
 
   def create

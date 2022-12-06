@@ -1,18 +1,15 @@
-<%= render "shared/modal-turbo" do %>
-  <div class="container mt-5 d-flex col align-items-center gap-5">
-    <div class="row">
-      <div class="col">
-        <h1>Contatar <strong><%= @request.user.first_name.capitalize %></strong></h1>
-        <p><strong>Tipo de requisicao: </strong><%= @request.request_type %></p>
-        <p><strong>Origem: </strong><%= @request.origin %></p>
-        <p><strong>Destino: </strong><%= @request.destination %></p>
-      </div>
-      <div class="col">
-        <p><strong>Entrar em contato: </strong></p>
-        <a class="icone-whatsapp" href="https://wa.me/<%= @request.user.phone %>"><i class="fa-brands fa-whatsapp"></i></a>
-      </div>
+<div class="container mt-5 d-flex col align-items-center gap-5">
+  <div class="row">
+    <div class="col">
+      <h1>Contatar <strong><%= @request.user.first_name.capitalize %></strong></h1>
+      <p><strong>Tipo de requisicao: </strong><%= @request.request_type %></p>
+      <p><strong>Origem: </strong><%= @request.origin %></p>
+      <p><strong>Destino: </strong><%= @request.destination %></p>
     </div>
-    <%= link_to "Voltar", requests_path, class: "btn btn-primary"%>
-    <%= link_to "Deletar", @exchange, class: "btn btn-primary", data: { turbo: true, turbo_confirm: "Deletar?", turbo_frame: "modal"}, method: :delete if policy(@exchange).destroy? %>
+    <div class="col">
+      <p><strong>Entrar em contato: </strong></p>
+      <a class="icone-whatsapp" href="https://wa.me/<%= @request.user.phone %>"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
   </div>
-<% end %>
+  <%= link_to "Voltar", requests_path, class: "btn btn-primary"%>
+</div>

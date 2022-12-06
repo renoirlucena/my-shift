@@ -9,6 +9,8 @@ export default class extends Controller {
   static targets = [ "startTime", "endTime" ]
 
   connect() {
+    console.log(this.startTimeTarget.value)
+    console.log(this.endTimeTarget.value)
     flatpickr(this.startTimeTarget, {
               enableTime: true,
               dateFormat: "j-M-Y H:i",
