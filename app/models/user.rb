@@ -31,7 +31,13 @@ class User < ApplicationRecord
   validates :phone, presence: true, uniqueness: true
   # validates :phone, format: { with: /(\d{2})(\d{2})(\d{1})(\d{4})(\d{4})/ }
 
+  after_create :send_welcome_email
+
   private
+  
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 
   def valid_cpf
     invalid = %w[12345678909 11111111111 22222222222 33333333333 44444444444 55555555555 66666666666 77777777777 88888888888 99999999999 00000000000 12345678909]
