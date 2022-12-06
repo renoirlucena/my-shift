@@ -27,47 +27,45 @@
     <div class="request_card_total">
       <% @requests.each do |request| %>
         <% if request.user.company == current_user.company  %>
-          <div class="request_card">
-            <div>
-                <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
-                <h3>  <% if request.request_type == "Folgar" %> </h3>
-                      <h3> Quer trabalhar? </h3>
-                      <% elsif request.request_type == "Extra" %>
-                      <h3> Quer Folgar? </h3>
-                      <% else request.request_type == "Trocar" %>
-                      <h3> Quer trocar? </h3>
-                      <% end %>
-                <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
-                <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
-                <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
+        <div class="request_card">
+          <div>
+              <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
+              <h3>  <% if request.request_type == "Folgar" %> </h3>
+                    <h3> Quer trabalhar? </h3>
+                    <% elsif request.request_type == "Extra" %>
+                    <h3> Quer Folgar? </h3>
+                    <% else request.request_type == "Trocar" %>
+                    <h3> Quer trocar? </h3>
+                    <% end %>
+              <p> <i class="fa-regular fa-calendar"></i> <%= l request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l request.end_time, format: :short %> </p>
+              <p> <i class="fa-solid fa-location-dot"></i> <%= request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= request.destination %> </p>
+              <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
 
+              <div class="d-flex gap-3">
                 <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
-                <div class="d-flex gap-3">
-
                 <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
                 <%= link_to "", request, class: "fa-regular fa-trash-can index-icons", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Cancelar requisição?", turbo_frame: "modal"} if policy(request).destroy? %>
                 <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
                 <i class="fa-solid fa-calendar-days"></i>
                 </button>
-                </div>
-            </div>
-            <div>
-                <label class="btn avatar-photo">
-                <% if request.user.avatar.attached? %>
-                <%= cl_image_tag request.user.avatar.key %>
-                <% else %>
-                  <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
-                </label>
-                <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
-                <% end %>
+              </div>
           </div>
-        <% else %>
-          <p>Não existem pedidos na sua companhia aérea.</p>
-        <% end %>
+          <div>
+              <label class="btn avatar-photo">
+              <% if request.user.avatar.attached? %>
+              <%= cl_image_tag request.user.avatar.key %>
+              <% else %>
+                <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
+              </label>
+              <p> <i class="fa-solid fa-user"></i> <%= request.user.first_name.capitalize %> quer <%= request.request_type %> </p>
+              <% end %>
+          </div>
+          <% else %>
+          Não existem pedidos na sua companhia aérea.
+          <% end %>
         </div>
-      <% end %>
-    </div>
-  </div>
+        <% end %>
+      </div>
 
   <!-- Modal -->
     <div class="modal modal-lg fade" data-open-calendar-target='modal' tabindex="-1">
