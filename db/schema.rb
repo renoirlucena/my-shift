@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_210358) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_150327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_210358) do
     t.index ["user_id"], name: "index_exchanges_on_user_id"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "membership_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "state"
+    t.string "membership_sku"
+    t.string "checkout_session_id"
+    t.integer "amount_cents", default: 0, null: false
+    t.index ["membership_id"], name: "index_orders_on_membership_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "request_type"
     t.datetime "start_time"
@@ -96,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_210358) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "exchanges", "requests"
   add_foreign_key "exchanges", "users"
+  add_foreign_key "orders", "memberships"
+  add_foreign_key "orders", "users"
   add_foreign_key "requests", "users"
   add_foreign_key "users", "companies"
 end
