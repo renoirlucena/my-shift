@@ -3,16 +3,16 @@
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <p color="modal-title">Solicitação</p>
+    <p class="modal-title">Solicitação</p>
     <hr>
-    <div class="d-flex justify-content-around" id="form-bg">
+    <div class="d-flex justify-content-center" id="form-bg">
       <div>
-          <%= f.input :request_type, as: :select, class: "chosen-select", collection: Request::REQUEST_TYPE, prompt: 'Selecione', label: 'Tipo de requisição' %>
-          <%= f.input :start_time, placeholder: '00-00-0000', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } } %>
-          <%= f.input :end_time, placeholder: '00-00-0000', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" } } %>
-          <%= f.input :origin, placeholder: "Origem", label: 'Origem', input_html: { data: { 'cities-target': 'input' }, class: "d-none" }, wrapper_html: { data: {controller: "cities", cities_key_value: ENV["MAPBOX_KEY"]}} %>
-          <%= f.input :destination, placeholder: "Destino", label: 'Destino', input_html: { data: { 'cities-target': 'input' }, class: "d-none border" }, wrapper_html: { data: {controller: "cities", cities_key_value: ENV["MAPBOX_KEY"]}}%>
-          <%= f.submit 'Confirmar', class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4', input_html: { data: { 'flatpickr-target': "btnSubmit" } } %>
+          <%= f.input :request_type, as: :select, class: "chosen-select", collection: Request::REQUEST_TYPE, prompt: 'Selecione', label: 'Tipo de requisição', error: false %>
+          <%= f.input :start_time, placeholder: '00-00-0000', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } }, error: false  %>
+          <%= f.input :end_time, placeholder: '00-00-0000', label: 'Volta', as: :string, input_html: { data: { 'flatpickr-target': "endTime" } }, error: false  %>
+          <%= f.input :origin, placeholder: "Origem", label: 'Origem', input_html: { data: { 'cities-target': 'input' }, class: "d-none" }, wrapper_html: { data: {controller: "cities", cities_key_value: ENV["MAPBOX_KEY"]}}, error: "Campo em branco"  %>
+          <%= f.input :destination, placeholder: "Destino", label: 'Destino', input_html: { data: { 'cities-target': 'input' }, class: "d-none border" }, wrapper_html: { data: {controller: "cities", cities_key_value: ENV["MAPBOX_KEY"]}}, error: "Campo em branco" %>
+          <%= f.submit 'Confirmar', class: 'btn btn-primary hover:text-primary rounded-pill shadow-sm border px-4', input_html: { data: { 'flatpickr-target': "btnSubmit" } }%>
       </div>
     </div>
   <% end %>

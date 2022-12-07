@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Membership</h1>
+  <div class="row">
+    <% @membership.each do |membership| %>
+      <div class="col-6 col-md-4">
+        <div class="card">
+          <%= image_tag membership.photo_url , class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= membership.name %></h5>
+            <p class="card-text"><%= membership.category.name %></p>
+            <%= link_to "More details", membership_path(membership), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

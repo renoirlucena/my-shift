@@ -1,4 +1,9 @@
-
+.exchange_card_total {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
 
 .request_card {
   box-shadow: 0 10px 30px rgba(0,0,0,.1);

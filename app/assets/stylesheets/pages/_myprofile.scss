@@ -1,3 +1,8 @@
+#profile-title {
+  display: flex;
+  align-items: center;
+}
+
 .container-my-profile {
   padding-top: 50px;
   justify-content: center;
@@ -22,8 +27,8 @@
   }
 
   img {
-    width: 300px;
-    height: 300px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
