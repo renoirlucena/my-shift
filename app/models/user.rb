@@ -6,6 +6,7 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :requests
   has_many :exchanges
+  has_many :orders
 
   has_one_attached :avatar
 
@@ -34,7 +35,7 @@ class User < ApplicationRecord
   after_create :send_welcome_email
 
   private
-  
+
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
   end

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
   resources :exchanges, except: %i[new create]
   resources :companies
+  resources :orders, only: [:show, :create]
+  resources :memberships, only: [:show]
 end
