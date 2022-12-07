@@ -70,6 +70,8 @@ class RequestsController < ApplicationController
     @request.end_time = range.last
     # current_user
     if @request.save
+      mail = RequestMailer.with(request: @request).newRequest
+      mail.deliver_now
       redirect_to requests_path
     else
       render :new, status: :unprocessable_entity
