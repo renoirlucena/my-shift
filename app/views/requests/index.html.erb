@@ -27,14 +27,14 @@
       <!-- DIV relacionada a exchange -->
       <% @exchanges.each do |exchange| %>
         <% if exchange.request.user == current_user %>
-          <div class="request_card bg-secondary bg-gradient text-white order1">
+          <div class="request_card bg-secondary bg-gradient order1">
             <div>
-              <div class="bg-primary bg-gradient text-white text-center py-1 mb-2 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase %></strong></div>
-              <h4>Você pediu para<strong> <%= exchange.request.request_type %></strong></h4>
+              <div class="bg-primary bg-gradient text-white text-center py-1 mb-3 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase %></strong></div>
+              <h5 class="mb-3">Você pediu para<strong> <%= exchange.request.request_type %></strong></h5>
               <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
               <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
-              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-check h5 text-decoration-none text-white d-inline-flex bg-success bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
-              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-x h5 text-decoration-none text-white d-inline-flex bg-danger bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
+              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-check h5 text-decoration-none d-inline-flex text-success border border-success text-center rounded-3 px-3 py-2 mt-3 link-primary", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
+              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-x h5 text-decoration-none text-danger d-inline-flex border border-danger text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
             </div>
             <div>
               <label class="btn avatar-photo">
@@ -52,15 +52,15 @@
             <div>
               <div class="text-white bg-warning bg-gradient text-center py-1 mb-2 rounded-3" style="width: 100px"><strong>AGUARDE</strong></div>
               <% if exchange.request.request_type == "Folgar" %>
-                <h4> Você pediu para trabalhar no lugar <%= exchange.request.user.first_name.capitalize %> </h4>
+                <h5 class="mt-3 mb-3"> Você pediu para trabalhar no lugar de <%= exchange.request.user.first_name.capitalize %> </h5>
               <% elsif exchange.request.request_type == "Trabalhar" %>
-                <h4> Você cedeu dias de trabalho para <%= exchange.request.user.first_name.capitalize %> </h4>
+                <h5 class="mt-3 mb-3"> Você cedeu dias de trabalho para <%= exchange.request.user.first_name.capitalize %> </h5>
               <% else exchange.request.request_type == "Trocar" %>
-                <h4> Você quer trocar com <%= exchange.request.user.first_name.capitalize %> </h4>
+                <h5 class="mt-3 mb-3"> Você quer trocar com <%= exchange.request.user.first_name.capitalize %> </h5>
               <% end %>
               <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
               <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
-              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-trash-can index-icons", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Deletar?"} %>
+              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-trash-can index-icons text-decoration-none mt-3", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Deletar?"} %>
             </div>
             <div>
               <label class="btn avatar-photo">
@@ -81,7 +81,7 @@
       <% @requests.each do |request| %>
         <div class="request_card order3">
           <div>
-              <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" %></p>
+              <p><%= request.exchange.present? ? "Já em negociação" : "Disponível" unless request.user == current_user %></p>
               <h3>  <% if request.request_type == "Folgar" && request.user == current_user %> </h3>
                     <h3> Quer trabalhar? </h3>
                     <% elsif request.request_type == "Trabalhar" %>
@@ -94,10 +94,10 @@
               <p> <i class="fa-regular fa-clock"></i> <%= request.created_at.strftime("%d %b %y") %> </p>
               <p> <%= request.user.company.name %></p>
 
-              <div class="d-flex gap-3">
+              <div class="d-flex gap-3 mt-3">
                 <%= link_to "Quero esta chave", request_path(request), :class => "btn btn-main", data: { turbo: true, turbo_frame: "modal" } unless request.user == current_user %>
-                <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
-                <%= link_to "", request, class: "fa-regular fa-trash-can index-icons", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Cancelar requisição?", turbo_frame: "modal"} if policy(request).destroy? %>
+                <%=  link_to "", edit_request_path(request), class: "fa-solid fa-pen-to-square index-icons text-decoration-none", data: { turbo: true, turbo_frame: "modal"} if policy(request).edit?%>
+                <%= link_to "", request, class: "fa-solid fa-trash-can index-icons text-decoration-none", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Cancelar requisição?", turbo_frame: "modal"} if policy(request).destroy? %>
                 <button type="button" class="btn btn-calendar" data-action="click->open-calendar#open" data-open-calendar-id-param='<%= request.id %>'>
                 <i class="fa-solid fa-calendar-days"></i>
                 </button>
@@ -128,12 +128,13 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Calendário</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" data-open-calendar-target='modalBody'>
           </div>
           <div class="modal-footer">
+            <p class="px-3 py-3 mb-0">Destacado em verde as datas selecionadas.</p>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
