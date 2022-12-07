@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
 
   def index
     @requests_all = policy_scope(Request)
-    @exchanges = Exchange.all.where(status: "Pendente")
+    @exchanges = Exchange.where(status: "Pendente")
     @requests = @requests_all.where.missing(:exchange).order(created_at: :desc)
 
     if params[:start_time].present? ||
@@ -64,6 +64,15 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user = current_user
+
+    # se usuario criou request com mesma origem block
+    # if @request.user.includes() ja tem @request mesmo origem
+
+    # se usuario criou request com mesmo data block
+
+    # se usuario criou request com mesmo horario block
+
+
     authorize @request
     range = params[:request][:start_time].split(' to ')
     @request.start_time = range.first

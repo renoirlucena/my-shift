@@ -1,7 +1,7 @@
 
 
 .request_card {
-  box-shadow: 0 10px 30px rgba(0,0,0,.1); 
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
   background-color: $light-gray;
   color: $gray;
   display: flex;
@@ -17,9 +17,9 @@
     color: #fff;
     padding: 0.5em 1em;
     border-radius: 5px;
-    
+
   }
-  
+
   h3 {
     font-family: 'Poppins';
   }
@@ -68,3 +68,14 @@
 
 }
 
+.order1 {
+  order: 1;
+}
+
+.order2 {
+  order: 2;
+}
+
+.order3 {
+  order: 3;
+}
