@@ -41,6 +41,8 @@ class ExchangesController < ApplicationController
 
     # current_user
     if @exchange.save
+      mail = ExchangeMailer.with(exchange: @exchange).new_exchange
+      mail.deliver_now
       redirect_to exchange_path(@exchange)
     else
       render :new, status: :unprocessable_entity
