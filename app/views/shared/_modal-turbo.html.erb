@@ -1,5 +1,3 @@
-<%# Modal base for using with Turbo Hotwire %>
-<%# OBS: When rendering, it must receive as arguments:<modal width class> %>
 <%= turbo_frame_tag "modal" do %>
   <div id="editTitleModal" data-controller="modal-turbo" data-turbo="true">
     <div class="transparent-overlay modal-inside-card" data-action="click->modal-turbo#closeModal"></div>

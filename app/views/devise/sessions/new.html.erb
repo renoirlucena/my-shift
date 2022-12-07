@@ -1,4 +1,4 @@
-<div class="container login-margin-top card-login">
+<div class="container login-margin-top">
   <div class="card card-login">
     <div class="row g-0">
       <div class="col-xl-6 d-none d-xl-block">
@@ -6,11 +6,11 @@
           alt="flight-attendant">
       </div>
       <div class="col-xl-6">
-        <div class="login-window p-md-5 text-black">
+        <div class="login-window p-md-5">
         <%= link_to root_path do  %>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <% end %>
-          <h3 class="mb-4 text-uppercase">Login</h3>
+          <h3 class="mb-4">Login</h3>
 
 
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>

@@ -1,6 +1,4 @@
-<div data-controller="open-calendar">
-  <h1>Requests</h1>
-
+<div data-controller="open-calendar" class="mt-5">
   <div id="form-bg">
     <%= form_with url: requests_path, method: :get, class: "d-flex", data: { controller: 'flatpickr-search' } do |f| %>
       <div id="ida">
@@ -120,7 +118,7 @@
         <% end %>
       </div>
       <!-- DIV relacionada a request -->
-      
+
       <% if @requests.count.zero?  %>
         <h3> Ainda não existem pedidos dentro da sua companhia</h3>
       <% end %>
