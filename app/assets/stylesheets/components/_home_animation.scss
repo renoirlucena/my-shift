@@ -220,12 +220,20 @@ iframe {
 
 .coluna-50 {
   width: 40%;
+  text-align: justify;
+  
+
+  h5 {
+    line-height: 1.5;
+  }
 }
 
 .home-desc {
   color: $light-blue;
   font-size: 18px;
   font-family: $headers-font;
+  width: 60%;
+  margin: 12px auto;
 }
 
 .home-desc-bold {
