@@ -3,9 +3,9 @@
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <p color="modal-title">Solicitação</p>
+    <p class="modal-title">Solicitação</p>
     <hr>
-    <div class="d-flex justify-content-around" id="form-bg">
+    <div class="d-flex justify-content-center" id="form-bg">
       <div>
           <%= f.input :request_type, as: :select, class: "chosen-select", collection: Request::REQUEST_TYPE, prompt: 'Selecione', label: 'Tipo de requisição', error: false %>
           <%= f.input :start_time, placeholder: '00-00-0000', label: 'Ida', as: :string, input_html: { data: { 'flatpickr-target': "startTime" } }, error: false  %>

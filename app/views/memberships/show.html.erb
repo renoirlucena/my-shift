@@ -1,0 +1,18 @@
+# app/views/memberships/show.html.erb
+<!-- app/views/teddies/show.html.erb -->
+<div class="container py-3">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <h1><%= @membership.category %></h1>
+      <h1><%= @membership.price %></h1>
+
+      <p>Some awesome description of our amazing membership.</p>
+      <p>$$$</p>
+    </div>
+  </div>
+</div>
+
+<%= form_with url: orders_path do %>
+  <%= hidden_field_tag 'membership_id', @membership.id %>
+  <%= submit_tag 'Comprar', data: { turbo: false }, class: 'btn-main' %>
+<% end %>
