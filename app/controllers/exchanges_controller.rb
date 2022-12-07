@@ -25,12 +25,12 @@ class ExchangesController < ApplicationController
   def update
     @exchange.status = 'Confirmado'
     @exchange.save
-    redirect_to requests_path, notice: "Sua exchange foi atualizada"
+    redirect_to requests_path, notice: "Requisição aprovada com sucesso"
   end
 
   def destroy
     @exchange.destroy
-    redirect_to requests_path, notice: "Cancelado com sucesso!"
+    redirect_to requests_path, notice: "Requisição de #{@exchange.user.first_name} reprovada!"
   end
 
   def create
