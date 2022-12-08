@@ -23,7 +23,8 @@ class OrdersController < ApplicationController
       subscription_data: {trial_period_days: 30},
       mode: 'subscription',
       success_url: "http://project-my-shift.herokuapp.com/orders/#{@order.id}?payment=ok",
-      cancel_url: "http://project-my-shift.herokuapp.com/memberships/#{@membership.id}"
+      cancel_url: "http://project-my-shift.herokuapp.com/orders/#{@order.id}?payment=ok"
+      # cancel_url: "http://project-my-shift.herokuapp.com/memberships/#{@membership.id}"
     )
     redirect_to @session.url, status: 303, allow_other_host: true
   end
