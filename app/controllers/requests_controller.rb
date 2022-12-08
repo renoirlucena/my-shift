@@ -13,6 +13,13 @@ class RequestsController < ApplicationController
       @requests = @requests.where(start_time: start_time..end_time, end_time: start_time..end_time)
     end
 
+    # if params[:start_time].present? || params[:end_time].present?
+    #   start_time = params[:start_time].blank? ? Date.new(1980, 1, 1)..Date.new(2040, 1, 1) : (Time.zone.parse(params[:start_time]).beginning_of_day)..(Time.zone.parse(params[:start_time]).beginning_of_day + 1.day)
+    #   end_time = params[:end_time].blank? ? Date.new(1980, 1, 1)..Date.new(2040, 1, 1) : (Time.zone.parse(params[:end_time]).end_of_day - 1.day)..(Time.zone.parse(params[:end_time]).end_of_day)
+
+    #   @requests = @requests.where(start_time: start_time, end_time: end_time)
+    # end
+
     if params[:origin].present?
       @requests = @requests.where("origin ILIKE ?", "%#{params[:origin]}%")
     end
