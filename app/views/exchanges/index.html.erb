@@ -30,7 +30,7 @@
       <% elsif exchange.user == current_user %>
         <div class="request_card bg-secondary bg-gradient text-white">
           <div>
-            <div class="bg-light bg-gradient text-secondary text-center py-1 mb-2 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase if exchange.status %></strong></div>
+            <div class="bg-light bg-gradient text-dark text-center py-1 mb-2 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase if exchange.status %></strong></div>
             <% if exchange.request.request_type == "Folgar" %>
               <h4> Você pediu para trabalhar no lugar de <%= exchange.request.user.first_name %> </h4>
             <% elsif exchange.request.request_type == "Extra" %>
@@ -40,7 +40,7 @@
             <% end %>
             <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
             <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
-            <%= link_to "", exchange_path(exchange), class: "fa-solid fa-trash-can h5 text-decoration-none text-white d-inline-flex bg-warning bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Deletar?"} %>
+            <%= link_to "", exchange_path(exchange), class: "fa-solid fa-trash-can h5 text-decoration-none text-dark d-inline-flex bg-warning bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Deletar?"} %>
           </div>
           <div>
             <label class="btn avatar-photo">
