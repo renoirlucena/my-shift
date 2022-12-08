@@ -44,7 +44,9 @@ iframe {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-image: url('worldmap-teste.jpg');
+  background-position: center;
+  object-fit: fill;
+  // background-image: url('worldmap-teste.jpg');
   padding: 0;
   font-family: 'Open Sans', sans-serif;
 }
@@ -207,7 +209,7 @@ iframe {
 
 .card-sobre .card-sobre-infos {
   padding: 16px;
-  
+
 }
 
 .div-sobre {
@@ -222,7 +224,7 @@ iframe {
 .coluna-50 {
   width: 40%;
   text-align: justify;
-  
+
 
   h5 {
     line-height: 1.5;
