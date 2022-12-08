@@ -4,40 +4,6 @@
 <div class="container">
   <div class="exchange_card_total">
 
-      <!-- DIV relacionada a exchange -->
-      <% @exchanges.each do |exchange| %>
-        <% if exchange.request.user == current_user %>
-          <div class="request_card bg-secondary bg-gradient order1">
-            <div>
-              <div class="bg-light bg-gradient text-secondary text-center py-1 mb-2 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase if exchange.status %></strong></div>
-              <h5>Você pediu para <strong><%= exchange.request.request_type %></strong></h5>
-              <p> <i class="fa-regular fa-calendar"></i> <%= l exchange.request.start_time, format: :short %> <i class="fa-solid fa-arrow-right"></i> <%= l exchange.request.end_time, format: :short %> </p>
-              <p> <i class="fa-solid fa-location-dot"></i> <%= exchange.request.origin %> <i class="fa-solid fa-arrow-right"></i> <%= exchange.request.destination %> </p>
-              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-check h5 text-decoration-none text-white d-inline-flex bg-success bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :patch, turbo_confirm: "Confirmar?"} %>
-              <%= link_to "", exchange_path(exchange), class: "fa-solid fa-x h5 text-decoration-none text-white d-inline-flex bg-danger bg-gradient text-center rounded-3 px-3 py-2 link-primary", data: { turbo: true, turbo_method: :delete, turbo_confirm: "Recusar?"} %>
-            </div>
-            <div>
-              <label class="btn avatar-photo">
-                <% if exchange.user.avatar.attached? %>
-                  <%= cl_image_tag exchange.user.avatar.key %>
-                <% else %>
-                  <%= image_tag "https://i1.sndcdn.com/avatars-000255771415-dx5rag-t200x200.jpg"%>
-                <% end %>
-              </label>
-              <p> <i class="fa-solid fa-user"></i> <%= exchange.user.first_name %> pegou sua requisição </p>
-            </div>
-          </div>
-        <% elsif exchange.user == current_user %>
-          <div class="request_card order2">
-            <div>
-              <div class="bg-light bg-gradient text-secondary text-center py-1 mb-2 rounded-3" style="width: 100px"><strong><%= exchange.status.upcase if exchange.status %></strong></div>
-              <% if exchange.request.request_type == "Folgar" %>
-                <h4> Você pediu para trabalhar no lugar de <%= exchange.request.user.first_name %> </h4>
-              <% elsif exchange.request.request_type == "Extra" %>
-                <h4> Você cedeu dias de trabalho para <%= exchange.request.user.first_name %> </h4>
-              <% else exchange.request.request_type == "Trocar" %>
-                <h4> Você quer trocar com <%= exchange.request.user.first_name %> </h4>
-=======
     <!-- DIV relacionada a exchange -->
     <% @exchanges.each do |exchange| %>
       <% if exchange.request.user == current_user %>
