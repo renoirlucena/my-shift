@@ -23,7 +23,15 @@
                 </label>
               </div>
             <div class="col-4">
-              <h2 id="profile-title">Seu perfil, <strong><%= current_user.first_name.capitalize %></strong></h2>
+
+            </div>
+            <div class="col-4 row">
+              <h3>Status da assinatura</h3>
+              <% if current_user.orders.present? && current_user.orders.last.state == 'paid' %>
+                <p><%= current_user.orders.last.membership.category %></p>
+              <% else %>
+                 <%= link_to "Assine já", memberships_path, class: "btn btn-primary" %>
+              <% end %>
             </div>
               <%= link_to root_path do %>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>

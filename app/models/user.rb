@@ -6,7 +6,8 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :requests
   has_many :exchanges
-  has_many :orders
+  has_many :orders, dependent: :destroy
+  has_many :memberships, through: :orders
 
   has_one_attached :avatar
 

@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
       }],
       subscription_data: {trial_period_days: 30},
       mode: 'subscription',
-      success_url: "http://localhost:3000/orders/#{@order.id}",
+      success_url: "http://localhost:3000/orders/#{@order.id}?payment=ok",
       cancel_url: "http://localhost:3000/memberships/#{@membership.id}"
     )
     redirect_to @session.url, status: 303, allow_other_host: true
@@ -30,6 +30,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    if params[:payment].present?
+      @order.update(state: 'paid')
+      redirect_to edit_user_registration_path
+    end
   end
 end
 

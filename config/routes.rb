@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :exchanges, except: %i[new create]
   resources :companies
   resources :orders, only: [:show, :create]
-  resources :memberships, only: [:show]
+  resources :memberships, only: [:show, :index]
 end

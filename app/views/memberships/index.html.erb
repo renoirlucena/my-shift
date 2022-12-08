@@ -1,14 +1,16 @@
 <div class="container">
   <h1>Membership</h1>
-  <div class="row">
-    <% @membership.each do |membership| %>
+  <div class="row d-flex justify-content-center mt-5">
+    <% @memberships.each do |membership| %>
       <div class="col-6 col-md-4">
         <div class="card">
-          <%= image_tag membership.photo_url , class: "card-img-top" %>
           <div class="card-body">
-            <h5 class="card-title"><%= membership.name %></h5>
-            <p class="card-text"><%= membership.category.name %></p>
-            <%= link_to "More details", membership_path(membership), class: "btn btn-primary" %>
+            <h5 class="card-title"><%= membership.category %></h5>
+            <p class="card-text">R$ <%= membership.price_cents/100 %>,00</p>
+            <%= form_with url: orders_path do %>
+              <%= hidden_field_tag 'membership_id', membership.id %>
+              <%= submit_tag 'Assine já', data: { turbo: false }, class: 'btn-main' %>
+            <% end %>
           </div>
         </div>
       </div>
