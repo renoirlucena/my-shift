@@ -6,10 +6,8 @@ class RequestsController < ApplicationController
     @exchanges = Exchange.where(status: "Pendente")
     @requests = @requests_all.where.missing(:exchange).order(created_at: :desc)
 
-    if params[:start_time].present? ||
-       params[:end_time].present? ||
-
-      start_time = params[:start_time].blank? ? Date.new(1980,1,1) : Time.zone.parse(params[:start_time]).beginning_of_day
+    if params[:start_time].present? || params[:end_time].present?
+      start_time = params[:start_time].blank? ? Date.new(1980, 1, 1) : Time.zone.parse(params[:start_time]).beginning_of_day
       end_time = params[:end_time].blank? ? Date.new(2040, 1, 1) : Time.zone.parse(params[:end_time]).end_of_day
 
       @requests = @requests.where(start_time: start_time..end_time, end_time: start_time..end_time)
