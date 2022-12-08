@@ -7,10 +7,10 @@
       <div id="volta">
         <%= text_field_tag :end_time, params[:end_time], data: { 'flatpickr-search-target': "endTime" }, placeholder: "Volta" %>
       </div>
-      <div id="origem" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>">
+      <div id="origem" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>" data-cities-placeholder-value="Origem">
         <%= text_field_tag :origin, params[:origin], placeholder: "Origem", data: { cities_target: "input" }, class: "d-none" %>
       </div>
-      <div id="destino" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>">
+      <div id="destino" data-controller="cities" data-cities-key-value="<%= ENV["MAPBOX_KEY"] %>" data-cities-placeholder-value="Destino">
         <%= text_field_tag :destination, params[:destination], placeholder: "Destino", data: { cities_target: "input" }, class: "d-none" %>
       </div>
       <div id="pesquisar">

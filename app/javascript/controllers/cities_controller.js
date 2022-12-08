@@ -3,13 +3,13 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static targets = [ "input" ]
-  static values = { key: String }
+  static values = { key: String, placeholder: String }
 
   connect() {
     this.geocoder = new MapboxGeocoder({
       accessToken: this.keyValue,
       types: "place",
-      placeholder: "Destino"
+      placeholder: this.placeholderValue
     })
     this.geocoder.addTo(this.element)
     this.geocoder.on("result", event => this.#setInputValue(event))
